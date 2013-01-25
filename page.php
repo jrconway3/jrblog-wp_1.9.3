@@ -8,8 +8,8 @@
  * different template.
  *
  * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
+ * @subpackage jrConway.Blog
+ * @since jrConway Responsive Blog 1.0
  */
 
 get_header(); ?>

@@ -5,8 +5,8 @@
  * Displays all of the <head> section and everything up till <div id="main">
  *
  * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
+ * @subpackage jrConway.Blog
+ * @since jrConway Responsive Blog 1.0
  */
 ?><!DOCTYPE html>
 <!--[if IE 7]>
@@ -40,8 +40,8 @@
 		</hgroup>
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<h3 class="menu-toggle"><?php _e( 'Menu', 'twentytwelve' ); ?></h3>
-			<a class="assistive-text" href="#content" title="<?php esc_attr_e( 'Skip to content', 'twentytwelve' ); ?>"><?php _e( 'Skip to content', 'twentytwelve' ); ?></a>
+			<h3 class="menu-toggle"><?php _e( 'Menu', 'jrconwayblog' ); ?></h3>
+			<a class="assistive-text" href="#content" title="<?php esc_attr_e( 'Skip to content', 'jrconwayblog' ); ?>"><?php _e( 'Skip to content', 'jrconwayblog' ); ?></a>
 			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) ); ?>
 		</nav><!-- #site-navigation -->
 

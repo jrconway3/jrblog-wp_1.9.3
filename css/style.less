@@ -1,0 +1,285 @@
+/*=======================================================================
+ JRConway Blog Templates 1.0 Import Styles
+ ========================================================================*/
+
+@import url('bootstrap.min.less');
+@import url('bootstrap-responsive.min.less');
+@import url('gumby.hybrid.min.less');
+/*@import url('ui.less');*/
+
+
+/*=======================================================================
+ JRConway Blog Templates 1.0 Predefines
+ ========================================================================*/
+
+/* Variables */
+@color1: #3b303c;
+@color2: #b29aba;
+@color3: #110011;
+@gradient1: #524652;
+@gradient2: #f7eef7;
+@gradient3: #c8b7c8;
+@gradient4: #a38db4;
+/*@gradient5: #37243b;*/
+@gradient5: #140314;
+@width1: 95%;
+@width2: 98%;
+
+/* Functions */
+.wrapper() {
+	.container;
+	width: 100%;
+}
+.segment() {
+	.row;
+	max-width: @width1;
+}
+.emboss(@color: rgba(0,0,0,0.5)) {
+	text-shadow: 0 -1px 5px @color;
+}
+.shadow(@size: 4px, @color: rgba(0,0,0,0.5)) {
+	text-shadow: 0 @size 0 @color;
+}
+.header() {
+	font-weight: bold;
+	font-family: Verdana, Arial, sans-serif;
+	letter-spacing: 3px;
+	-webkit-transition-duration: 1s;
+}
+.gradientBar(@top: #FFFFFF, @bottom: #666666) {
+	background-color: @top;
+	background-image: -moz-linear-gradient(top,@top,@bottom);
+	background-image: -webkit-gradient(linear,0 0,0 100%, from(@top), to(@bottom));
+	background-image: -webkit-linear-gradient(top,@top,@bottom);
+	background-image: -o-linear-gradient(top,@top,@bottom);
+	background-image: linear-gradient(to bottom,@top,@bottom);
+}
+.borderRadius(@topleft: 15px, @topright: 15px, @bottomleft: 15px, @bottomright: 15px) {
+	border-top-left-radius: @topleft;
+	border-top-right-radius: @topright;
+	border-bottom-left-radius: @bottomleft;
+	border-bottom-right-radius: @bottomright;
+}
+
+
+/*=======================================================================
+ JRConway Blog Templates 1.0 Layout Styles
+ ========================================================================*/
+
+
+/* Wrapper */
+html, body {
+	background: @color1;
+	font-size: 12px;
+}
+#wrapper {}
+
+/* Header */
+#heading {
+	.wrapper;
+	.gradientBar(@gradient1, @gradient1 - #333);
+	padding: 0;
+	height: 230px;
+}
+.topbar {
+	.segment;
+}
+.topbar .widget-area {
+	.seven;
+}
+.topbar .widget-header {
+	.five;
+}
+#maintitle {
+	padding-top: 30px;
+	line-height: 60px;
+}
+#subtitle {
+	position: relative;
+	line-height: 30px;
+	bottom: 10px;
+}
+
+/* Menu */
+#menu {
+	.segment;
+	.gradientBar(@gradient2, @gradient3);
+	.borderRadius(15px 5px, 15px 5px, 0px, 0px);
+	position: relative;
+	max-width: @width2;
+	margin-top: 25px;
+	height: 28px;
+}
+#menu ul {
+	font-size: 14px;
+	list-style: none;
+	margin: 0 15px;
+	padding: 0;
+	height: 28px;
+}
+#menu li {
+	float: left;
+	position: relative;
+	height: 28px;
+	margin: 0 5px;
+	padding: 2px;
+}
+#menu a {
+	display: block;
+	line-height: 28px;
+	text-decoration: none;
+}
+#menu li > a {
+	padding: 0 15px;
+	height: 26px;
+	line-height: 26px;
+}
+#menu li:hover,
+#menu .current-menu-item,
+#menu .current-menu-ancestor,
+#menu .current_page_item,
+#menu .current_page_ancestor {
+	.borderRadius(15px, 15px, 0px, 0px);
+	background-color: @color3;
+}
+#menu li:hover > a,
+#menu a:focus,
+#menu .current-menu-item > a,
+#menu .current-menu-ancestor > a,
+#menu .current_page_item > a,
+#menu .current_page_ancestor > a {
+	.borderRadius(15px, 15px, 0px, 0px);
+	.gradientBar(@gradient4, @gradient5);
+	color: #cc99cc;
+	/*.gradientBar(@gradient4, @gradient4 - #333);*/
+}
+#menu ul li:hover > ul {
+	display: block;
+}
+
+/* Sub-Menu */
+#submenu {
+	background-color: @color3;
+	width: 100%;
+	height: 36px;
+}
+
+/* Screen Width Less than 480px */
+@media only screen and (max-width: 479px) {
+
+}
+
+/* Screen Width Less than 768px */
+@media only screen and (max-width: 767px) {
+
+}
+
+
+/*=======================================================================
+ JRConway Blog Templates 1.0 Text Styles
+ ========================================================================*/
+
+
+/* Links */
+a {
+	color: #fbfbfb;
+}
+a:hover {
+	color: #ff7e00;
+}
+
+/* Headers */
+h1 {
+	.header;
+	.shadow;
+	color: @color2;
+	font-size: 30px;
+}
+h2 {
+	.header;
+	.shadow;
+	font-size: 18px;
+	line-height: 1.6;
+}
+#maintitle a, #subtitle a {
+	.outline;
+	color: @color2;
+	margin: 0;
+}
+#maintitle a {
+	font-size: 70px;
+}
+#subtitle a {
+	font-size: 42.5px;
+}
+
+/* Navigation */
+#menu a {
+	color: #cc00cc;
+	font-weight: bold;
+}
+
+/* Text */
+p {
+	font-size: 16px;
+	line-height: 60px;
+	margin-bottom: 0;
+	color: #78a261;
+
+	-webkit-transition-duration: .2s;
+	-moz-transition-duration: .2s;
+	-o-transition-duration: .2s;
+	-ms-transition-duration: .2s;
+	transition-duration: .2s;
+}
+
+.column:hover p, .columns:hover p {
+	font-size: 25px;
+	font-weight: bold;
+	color: #bbf09f;
+	
+	-webkit-transition-duration: .2s;
+	-moz-transition-duration: .2s;
+	-o-transition-duration: .2s;
+	-ms-transition-duration: .2s;
+	transition-duration: .2s;
+}
+
+.special, .special:hover {
+	background: #12220a;
+}
+.special:hover p {
+	color: #ffe400;
+}
+
+/* Assistive text */
+.assistive-text {
+	position: absolute !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+}
+#menu a.assistive-text:active,
+#menu a.assistive-text:focus {
+	background: #eee;
+	border-bottom: 1px solid #ddd;
+	color: #1982d1;
+	clip: auto !important;
+	font-size: 12px;
+	position: absolute;
+	text-decoration: underline;
+	top: 0;
+	left: 7.6%;
+}
+
+/* Screen Width Less than 480px */
+@media only screen and (max-width: 479px) {
+
+}
+
+/* Screen Width Less than 768px */
+@media only screen and (max-width: 767px) {
+	h1 {
+		font: bold italic 100px georgia, times new roman, serif;
+		-webkit-transition-duration: .5s;
+	}
+}

@@ -6,15 +6,15 @@
  * #main and #page div elements.
  *
  * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
+ * @subpackage jrConway.Blog
+ * @since jrConway Responsive Blog 1.0
  */
 ?>
 	</div><!-- #main .wrapper -->
 	<footer id="colophon" role="contentinfo">
 		<div class="site-info">
-			<?php do_action( 'twentytwelve_credits' ); ?>
-			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'twentytwelve' ) ); ?>" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'twentytwelve' ); ?>"><?php printf( __( 'Proudly powered by %s', 'twentytwelve' ), 'WordPress' ); ?></a>
+			<?php do_action( 'jrconwayblog_credits' ); ?>
+			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'jrconwayblog' ) ); ?>" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'jrconwayblog' ); ?>"><?php printf( __( 'Proudly powered by %s', 'jrconwayblog' ), 'WordPress' ); ?></a>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
