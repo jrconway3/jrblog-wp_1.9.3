@@ -202,19 +202,141 @@ function jrconwayblog_page_menu_args( $args ) {
 add_filter( 'wp_page_menu_args', 'jrconwayblog_page_menu_args' );
 
 /**
- * Registers our main widget area and the front page widget areas.
+ * Registers our page widget areas.
  *
  * @since jrConway Responsive Blog 1.0
  */
 function jrconwayblog_widgets_init() {
+	/**
+	  * Sidebar Widgets
+	  *
+	  * These are your typical, every day sidebar widgets. Instead of the usual set up,
+	  * we'll enable the ability for a three column layout. There will be page templates
+	  * for left sidebar, right sidebar, and two sidebars. These sidebars will be used for
+	  * each respective side.
+	  */
 	register_sidebar( array(
-		'name' => __( 'Main Sidebar', 'jrconwayblog' ),
+		'name' => __( 'Right Sidebar', 'jrconwayblog' ),
 		'id' => 'sidebar-1',
-		'description' => __( 'Appears on posts and pages except the optional Front Page template, which has its own widgets', 'jrconwayblog' ),
+		'description' => __( 'Right sidebar for the page. Can be used in right sidebar and three-column layouts.', 'jrconwayblog' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
+	) );
+	register_sidebar( array(
+		'name' => __( 'Left Sidebar', 'jrconwayblog' ),
+		'id' => 'sidebar-2',
+		'description' => __( 'Left sidebar for the page. Can be used in left sidebar and three-column layouts.', 'jrconwayblog' ),
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+
+	/**
+	  * Header Widgets
+	  *
+	  * Header widgets are defined second to avoid the default widgets being inserted into them.
+	  *
+	  * This could technically go into Theme Options, but what if uses want to do more
+	  * advanced features with the header area? We'll still define a header upload in the
+	  * common location, but if that isn't enabled it'll default to this.
+	  */
+	register_sidebar( array(
+		'name' => __( 'Header Image', 'jrconwayblog' ),
+		'id' => 'header-1',
+		'description' => __( 'Header area for the site logo to go.', 'jrconwayblog' ),
+		'before_widget' => '<header id="%1$s" class="widget %2$s">',
+		'after_widget' => '</header>',
+		'before_title' => '',
+		'after_title' => '',
+	) );
+	register_sidebar( array(
+		'name' => __( 'Header Sidebar', 'jrconwayblog' ),
+		'id' => 'sidebar-1',
+		'description' => __( 'Header sidebar to the right of the header image.', 'jrconwayblog' ),
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+
+	/**
+	  * Copyright Widgets
+	  *
+	  * The copyright area is a narrow bar at the bottom of the page separate from the main
+	  * footer widgets. For this reason we create separate footer widgets.
+	  *
+	  * This could technically go into Theme Options, but what if uses want to do more
+	  * advanced features with the copyright area? Let's allow them to change what's in here
+	  * using widgets instead of forcing a simple line of text.
+	  */
+	register_sidebar( array(
+		'name' => __( 'Copyright Footer', 'jrconwayblog' ),
+		'id' => 'copyright-1',
+		'description' => __( 'Footer area for the copyright.', 'jrconwayblog' ),
+		'before_widget' => '<small id="%1$s" class="widget %2$s">',
+		'after_widget' => '</small>',
+		'before_title' => '<h6 class="copyright-title">',
+		'after_title' => '</h6>',
+	) );
+	register_sidebar( array(
+		'name' => __( 'Copyright Sidebar', 'jrconwayblog' ),
+		'id' => 'copyright-2',
+		'description' => __( 'Sidebar for the copyright to enable two-column copyright area', 'jrconwayblog' ),
+		'before_widget' => '<small id="%1$s" class="widget %2$s">',
+		'after_widget' => '</small>',
+		'before_title' => '<h6 class="copyright-title">',
+		'after_title' => '</h6>',
+	) );
+
+	/**
+	  * Footer Widgets
+	  *
+	  * Lastly we have our footer widgets. There are four footer widgets, and these will
+	  * automatically be resized to fit based on how many widget areas are enabled.
+	  *
+	  * There will be a theme options page set up, though, to change the effects of how
+	  * these will work. For example, these widget areas could go above the copyright or
+	  * below the copyright. They also could be set to auto-resize based on how many widget
+	  * areas are enabled, or just to sit at the center of the footer area with a fixed width.
+	  */
+	register_sidebar( array(
+		'name' => __( 'Footer 1', 'jrconwayblog' ),
+		'id' => 'footer-1',
+		'description' => __( 'First widget area of the site footer.', 'jrconwayblog' ),
+		'before_widget' => '<footer id="%1$s" class="widget %2$s">',
+		'after_widget' => '</footer>',
+		'before_title' => '<h4 class="footer-title">',
+		'after_title' => '</h4>',
+	) );
+	register_sidebar( array(
+		'name' => __( 'Footer 2', 'jrconwayblog' ),
+		'id' => 'footer-2',
+		'description' => __( 'Second widget area of the site footer.', 'jrconwayblog' ),
+		'before_widget' => '<footer id="%1$s" class="widget %2$s">',
+		'after_widget' => '</footer>',
+		'before_title' => '<h4 class="footer-title">',
+		'after_title' => '</h4>',
+	) );
+	register_sidebar( array(
+		'name' => __( 'Footer 3', 'jrconwayblog' ),
+		'id' => 'footer-3',
+		'description' => __( 'Third widget area of the site footer.', 'jrconwayblog' ),
+		'before_widget' => '<footer id="%1$s" class="widget %2$s">',
+		'after_widget' => '</footer>',
+		'before_title' => '<h4 class="footer-title">',
+		'after_title' => '</h4>',
+	) );
+	register_sidebar( array(
+		'name' => __( 'Footer 4', 'jrconwayblog' ),
+		'id' => 'footer-4',
+		'description' => __( 'Fourth widget area of the site footer.', 'jrconwayblog' ),
+		'before_widget' => '<footer id="%1$s" class="widget %2$s">',
+		'after_widget' => '</footer>',
+		'before_title' => '<h4 class="footer-title">',
+		'after_title' => '</h4>',
 	) );
 }
 add_action( 'widgets_init', 'jrconwayblog_widgets_init' );
@@ -433,3 +555,25 @@ function jrconwayblog_customize_preview_js() {
 	wp_enqueue_script( 'jrconwayblog-customizer', get_template_directory_uri() . '/js/theme-customizer.js', array( 'customize-preview' ), '20120827', true );
 }
 add_action( 'customize_preview_init', 'jrconwayblog_customize_preview_js' );
+
+
+if ( ! function_exists( 'jrconwayblog_schema' ) ):
+/**
+ * Gets Site Schema From Theme Options
+ *
+ * @since JRConway Blog Template 1.0
+ */
+function jrconwayblog_schema() {
+	// Get Theme Options
+	//$theme_options = jrconwayblog_get_theme_options();
+	$theme_options = array();
+
+	// Output Schema
+	if(!empty($theme_options['schema'])) {
+		echo $theme_options['schema'];
+	}
+	else {
+		echo "Blog";
+	}
+}
+endif; // jrconwayblog_schema

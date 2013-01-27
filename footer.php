@@ -10,15 +10,17 @@
  * @since jrConway Responsive Blog 1.0
  */
 ?>
-	</div><!-- #main .wrapper -->
-	<footer id="colophon" role="contentinfo">
-		<div class="site-info">
-			<?php do_action( 'jrconwayblog_credits' ); ?>
-			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'jrconwayblog' ) ); ?>" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'jrconwayblog' ); ?>"><?php printf( __( 'Proudly powered by %s', 'jrconwayblog' ), 'WordPress' ); ?></a>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
-</div><!-- #page -->
+			<div class="clearfix">&nbsp;</div>
+		</div><!-- #main .wrapper -->
 
-<?php wp_footer(); ?>
+		<footer id="colophon" role="contentinfo">
+			<div class="site-info">
+				<?php do_action( 'jrconwayblog_credits' ); ?>
+				<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'jrconwayblog' ) ); ?>" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'jrconwayblog' ); ?>"><?php printf( __( 'Proudly powered by %s', 'jrconwayblog' ), 'WordPress' ); ?></a>
+			</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+	</div><!-- #page -->
+
+	<?php wp_footer(); ?>
 </body>
 </html>
