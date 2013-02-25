@@ -7,7 +7,7 @@
  *
  * @package WordPress
  * @subpackage jrConway.Blog
- * @since jrConway Responsive Blog 1.0
+ * @since jrBlog 1.0
  */
 ?>
 			<div class="clearfix">&nbsp;</div>
@@ -15,8 +15,8 @@
 
 		<footer id="colophon" role="contentinfo">
 			<div class="site-info">
-				<?php do_action( 'jrconwayblog_credits' ); ?>
-				<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'jrconwayblog' ) ); ?>" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'jrconwayblog' ); ?>"><?php printf( __( 'Proudly powered by %s', 'jrconwayblog' ), 'WordPress' ); ?></a>
+				<?php do_action( 'jrblog_credits' ); ?>
+				<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'jrblog' ) ); ?>" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'jrblog' ); ?>"><?php printf( __( 'Proudly powered by %s', 'jrblog' ), 'WordPress' ); ?></a>
 			</div><!-- .site-info -->
 		</footer><!-- #colophon -->
 	</div><!-- #page -->

@@ -6,23 +6,11 @@
  *
  * @package WordPress
  * @subpackage jrConway.Blog
- * @since jrConway Responsive Blog 1.0
+ * @since jrBlog 1.0
  */
 ?>
 <!DOCTYPE html>
-
-<!--[if IE 7]>
-<html class="ie ie7" <?php language_attributes(); ?> itemscope itemtype="http://schema.org/<?php jrconwayblog_schema(); ?>">
-<![endif]-->
-
-<!--[if IE 8]>
-<html class="ie ie8" <?php language_attributes(); ?> itemscope itemtype="http://schema.org/<?php jrconwayblog_schema(); ?>">
-<![endif]-->
-
-<!--[if gt IE 8]><!-->
-<html class="no-js" <?php language_attributes(); ?> itemscope itemtype="http://schema.org/<?php jrconwayblog_schema(); ?>">
-<!--<![endif]-->
-
+<html class="no-js" <?php language_attributes(); ?> itemscope itemtype="http://schema.org/<?php jrblog_schema(); ?>">
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 
@@ -30,15 +18,15 @@
 	<meta property="fb:page_id" content="" />
 	<meta property="og:image" content="" />
 	<meta property="og:description" content=""/>
-	<meta property="og:title" content=""/>
+	<meta property="og:title" content="<?php wp_title( '|', true, 'right' ); ?>"/>
 
 	<!--Google+ Metadata /-->
-	<meta itemprop="name" content="">
+	<meta itemprop="name" content="<?php wp_title( '|', true, 'right' ); ?>">
 	<meta itemprop="description" content="">
 	<meta itemprop="image" content="">
 
 	<!--Mobile Viewport Optimized /-->
-	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!--Set Page Title /-->
 	<title><?php wp_title( '|', true, 'right' ); ?></title>
@@ -57,21 +45,38 @@
 
 	<div id="page" class="hfeed site">
 		<header id="masthead" class="site-header" role="banner">
-			<hgroup>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-			</hgroup>
+			<section class="topbar">
+				<hgroup>
+					<?php if(is_active_sidebar('header-1')) : ?>
+						<?php dynamic_sidebar('header-1'); ?>
+					<?php elseif(of_get_option('header_image')):
+						$style      = '';
+						if(of_get_option('header_width')) {
+							$style .= 'width:' . of_get_option('header_width', 'no entry') . 'px;';
+						}
+						if(of_get_option('header_height')) {
+							$style .= 'height:' . of_get_option('header_height', 'no entry') . 'px;';
+						}
+					?>
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo of_get_option('header_image', 'no entry'); ?>" class="header-image" style="<?php echo $style; ?>" alt="<?php bloginfo( 'name' ); ?>" /></a>
+					<?php else: ?>
+						<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+						<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+					<?php endif; ?>
+				</hgroup>
+				<?php if(is_active_sidebar('header-2')) : ?>
+					<aside class="widget widget-area">
+						<?php dynamic_sidebar('header-2'); ?>
+					</aside>
+				<?php endif; ?>
+			</section>
 
 			<nav id="site-navigation" class="main-navigation" role="navigation">
-				<h3 class="menu-toggle"><?php _e( 'Menu', 'jrconwayblog' ); ?></h3>
-				<a class="assistive-text" href="#content" title="<?php esc_attr_e( 'Skip to content', 'jrconwayblog' ); ?>"><?php _e( 'Skip to content', 'jrconwayblog' ); ?></a>
+				<h3 class="menu-toggle"><?php _e( 'Menu', 'jrblog' ); ?></h3>
+				<a class="assistive-text" href="#content" title="<?php esc_attr_e( 'Skip to content', 'jrblog' ); ?>"><?php _e( 'Skip to content', 'jrblog' ); ?></a>
 				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) ); ?>
 			</nav><!-- #site-navigation -->
-
-			<?php $header_image = get_header_image();
-			if ( ! empty( $header_image ) ) : ?>
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo esc_url( $header_image ); ?>" class="header-image" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="" /></a>
-			<?php endif; ?>
 		</header><!-- #masthead -->
+		<nav id="sub-navigation" class="sub-navigation" role="navigation">&nbsp;</nav><!-- #sub-navigation -->
 
 		<div id="main" class="wrapper">

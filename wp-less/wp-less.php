@@ -133,7 +133,7 @@ class wp_less {
 				$full_cache = array( 'vars' => $vars, 'less' => $less_path );
 
 			$less_cache = lessc :: cexecute( $full_cache[ 'less' ] );
-			if ( ! is_array( $less_cache ) || $less_cache[ 'updated' ] > $full_cache[ 'less' ][ 'updated' ] || $vars !== $full_cache[ 'vars' ] ) {
+			if ( ! is_array( $less_cache ) || (is_array($less_cache) && $less_cache[ 'updated' ] > $full_cache[ 'less' ][ 'updated' ]) || (is_array($less_cache) && $vars !== $full_cache[ 'vars' ] )) {
 				$less = new lessc( $less_path );
 				file_put_contents( $cache_path, serialize( array( 'vars' => $vars, 'less' => $less_cache ) ) );
 				file_put_contents( $css_path, $less->parse( null, $vars ) );

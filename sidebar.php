@@ -6,7 +6,7 @@
  *
  * @package WordPress
  * @subpackage jrConway.Blog
- * @since jrConway Responsive Blog 1.0
+ * @since jrBlog 1.0
  */
 ?>
 

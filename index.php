@@ -11,7 +11,7 @@
  *
  * @package WordPress
  * @subpackage jrConway.Blog
- * @since jrConway Responsive Blog 1.0
+ * @since jrBlog 1.0
  */
 
 get_header(); ?>
@@ -22,10 +22,10 @@ get_header(); ?>
 
 			<?php /* Start the Loop */ ?>
 			<?php while ( have_posts() ) : the_post(); ?>
-				<?php get_template_part( 'content', get_post_format() ); ?>
+				<?php get_template_part( 'content', 'excerpt' ); ?>
 			<?php endwhile; ?>
 
-			<?php jrconwayblog_content_nav( 'nav-below' ); ?>
+			<?php jrblog_content_nav( 'nav-below' ); ?>
 
 		<?php else : ?>
 
@@ -35,22 +35,22 @@ get_header(); ?>
 				// Show a different message to a logged-in user who can add posts.
 			?>
 				<header class="entry-header">
-					<h1 class="entry-title"><?php _e( 'No posts to display', 'jrconwayblog' ); ?></h1>
+					<h1 class="entry-title"><?php _e( 'No posts to display', 'jrblog' ); ?></h1>
 				</header>
 
 				<div class="entry-content">
-					<p><?php printf( __( 'Ready to publish your first post? <a href="%s">Get started here</a>.', 'jrconwayblog' ), admin_url( 'post-new.php' ) ); ?></p>
+					<p><?php printf( __( 'Ready to publish your first post? <a href="%s">Get started here</a>.', 'jrblog' ), admin_url( 'post-new.php' ) ); ?></p>
 				</div><!-- .entry-content -->
 
 			<?php else :
 				// Show the default message to everyone else.
 			?>
 				<header class="entry-header">
-					<h1 class="entry-title"><?php _e( 'Nothing Found', 'jrconwayblog' ); ?></h1>
+					<h1 class="entry-title"><?php _e( 'Nothing Found', 'jrblog' ); ?></h1>
 				</header>
 
 				<div class="entry-content">
-					<p><?php _e( 'Apologies, but no results were found. Perhaps searching will help find a related post.', 'jrconwayblog' ); ?></p>
+					<p><?php _e( 'Apologies, but no results were found. Perhaps searching will help find a related post.', 'jrblog' ); ?></p>
 					<?php get_search_form(); ?>
 				</div><!-- .entry-content -->
 			<?php endif; // end current_user_can() check ?>

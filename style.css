@@ -1,15 +1,12 @@
 /*
-Theme Name: jrConway Responsive Blog
+Theme Name: jrBlog
 Theme URI: http://www.jrconway.net
 Author: David A Conway Jr.
 Author URI: http://www.jrconway.net
-Description: The jrConway Responsive Blog template is a template designed to be used by DEVELOPERS to
-make it easier to create a responsive wordpress template. This template is mainly designed so that I
-have a base to work off of in the future, but can be used by anyone to do the same thing.
-
-The template could potentially be used on its own as well, but its primarily designed just to be a
-starting point for developers to base their themes off of. Of course, replace all references to
-jrconwayblog with the name of your own template.
+Description: jrBlog is a responsive wordpress template built for personal usage, but also as a
+template designed to be used by DEVELOPERS to make it easier to create a responsive wordpress
+template. The template works out of the box, but can also be used as a base for future wordpress
+templates, which I will be using it for as well.
 
 This template utilizes TwentyTwelve as a base, Gumby Framework, Twitter Bootstrap (for the icons),
 and Less. The WP-Less Wordpress extension used in this template was created by Robert O'Rourke.
@@ -22,5 +19,5 @@ Version: 1.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: right-sidebar, flexible-width, full-width-template, rtl-language-support, theme-options, translation-ready
-Text Domain: jrconwayblog
+Text Domain: jrblog
 */

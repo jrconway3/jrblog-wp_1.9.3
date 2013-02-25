@@ -1,6 +1,6 @@
 <?php
 /**
- * The default template for displaying content. Used for both single and index/archive/search.
+ * The template for displaying posts with an excerpt.
  *
  * @package WordPress
  * @subpackage jrConway.Blog
@@ -30,16 +30,10 @@
 			<?php endif; // comments_open() ?>
 		</header><!-- .entry-header -->
 
-		<?php if ( is_search() ) : // Only display Excerpts for Search ?>
-		<div class="entry-summary">
-			<?php the_excerpt(); ?>
-		</div><!-- .entry-summary -->
-		<?php else : ?>
 		<div class="entry-content">
-			<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'jrblog' ) ); ?>
+			<?php the_excerpt(); ?>
 			<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'jrblog' ), 'after' => '</div>' ) ); ?>
 		</div><!-- .entry-content -->
-		<?php endif; ?>
 
 		<footer class="entry-meta">
 			<?php jrblog_entry_meta(); ?>

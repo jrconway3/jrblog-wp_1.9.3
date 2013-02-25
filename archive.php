@@ -6,7 +6,7 @@
  * For example, puts together date-based pages if no date.php file exists.
  *
  * If you'd like to further customize these archive views, you may create a
- * new template file for each specific one. For example, jrConway Responsive Blog already
+ * new template file for each specific one. For example, jrBlog already
  * has tag.php for Tag archives, category.php for Category archives, and
  * author.php for Author archives.
  *
@@ -14,7 +14,7 @@
  *
  * @package WordPress
  * @subpackage jrConway.Blog
- * @since jrConway Responsive Blog 1.0
+ * @since jrBlog 1.0
  */
 
 get_header(); ?>
@@ -26,13 +26,13 @@ get_header(); ?>
 			<header class="archive-header">
 				<h1 class="archive-title"><?php
 					if ( is_day() ) :
-						printf( __( 'Daily Archives: %s', 'jrconwayblog' ), '<span>' . get_the_date() . '</span>' );
+						printf( __( 'Daily Archives: %s', 'jrblog' ), '<span>' . get_the_date() . '</span>' );
 					elseif ( is_month() ) :
-						printf( __( 'Monthly Archives: %s', 'jrconwayblog' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'jrconwayblog' ) ) . '</span>' );
+						printf( __( 'Monthly Archives: %s', 'jrblog' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'jrblog' ) ) . '</span>' );
 					elseif ( is_year() ) :
-						printf( __( 'Yearly Archives: %s', 'jrconwayblog' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'jrconwayblog' ) ) . '</span>' );
+						printf( __( 'Yearly Archives: %s', 'jrblog' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'jrblog' ) ) . '</span>' );
 					else :
-						_e( 'Archives', 'jrconwayblog' );
+						_e( 'Archives', 'jrblog' );
 					endif;
 				?></h1>
 			</header><!-- .archive-header -->
@@ -49,7 +49,7 @@ get_header(); ?>
 
 			endwhile;
 
-			jrconwayblog_content_nav( 'nav-below' );
+			jrblog_content_nav( 'nav-below' );
 			?>
 
 		<?php else : ?>

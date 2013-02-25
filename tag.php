@@ -8,7 +8,7 @@
  *
  * @package WordPress
  * @subpackage jrConway.Blog
- * @since jrConway Responsive Blog 1.0
+ * @since jrBlog 1.0
  */
 
 get_header(); ?>
@@ -18,7 +18,7 @@ get_header(); ?>
 
 		<?php if ( have_posts() ) : ?>
 			<header class="archive-header">
-				<h1 class="archive-title"><?php printf( __( 'Tag Archives: %s', 'jrconwayblog' ), '<span>' . single_tag_title( '', false ) . '</span>' ); ?></h1>
+				<h1 class="archive-title"><?php printf( __( 'Tag Archives: %s', 'jrblog' ), '<span>' . single_tag_title( '', false ) . '</span>' ); ?></h1>
 
 			<?php if ( tag_description() ) : // Show an optional tag description ?>
 				<div class="archive-meta"><?php echo tag_description(); ?></div>
@@ -37,7 +37,7 @@ get_header(); ?>
 
 			endwhile;
 
-			jrconwayblog_content_nav( 'nav-below' );
+			jrblog_content_nav( 'nav-below' );
 			?>
 
 		<?php else : ?>
