@@ -14,9 +14,7 @@ All content areas that may potentially be editable are created as Widget Areas. 
 At this point in time it is still work-in-progress. I can only do so much while working on other things. I'm going to try and make nightly updates from now on, even if its a couple of minor issues, but I can't guarantee a thing.
 
 
-### Update #4
-Been a while since I got to this. I've renamed it again, instead to just jrBlog. I'm going to work on finishing it up enough so I can actually use it for my personal site, then later extend it. Initially it probably won't be responsive; too much effort at first, but I'll get to that quickly. First thing, though, is I need to actually have it ready so I can use it.
+### Update #5
+Made quite a few more fixes today. I redid the footer and main content area to be like the old design I had created before. I also fixed up the sidebar so it looks better and changed the footer a little so I can make it larger.
 
-I made a ton of updates to it. Its almost done now, but I still have to fix up the sidebar and footer areas. Also, I have to test single posts and full pages to make sure everything works properly. I have now successfully enabled the ability to either upload a header image in Theme Options, or to use Widgets as well.
-
-Oh, and I was having too many problems with Gumby. Overall I like the idea of using it for both 12-columns and 16-columns... but Gumby was NOT working well with Less, so I switched to just using Bootstrap instead.
+The only thing left is to add a widget to the header, and to add in all the footer widgets. I'll also have Theme Options for the Copyright as an optional usage.

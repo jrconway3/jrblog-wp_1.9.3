@@ -14,10 +14,16 @@
 		</div><!-- #main .wrapper -->
 
 		<footer id="colophon" role="contentinfo">
+			<div class="site-bar">&nbsp;</div><!-- .site-bar -->
 			<div class="site-info">
 				<?php do_action( 'jrblog_credits' ); ?>
-				<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'jrblog' ) ); ?>" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'jrblog' ); ?>"><?php printf( __( 'Proudly powered by %s', 'jrblog' ), 'WordPress' ); ?></a>
+				<a href="<?php echo esc_url( __( 'http://www.jrconway.net/', 'jrblog' ) ); ?>" title="<?php esc_attr_e( 'Responsive Blog Theme for Wordpress', 'jrblog' ); ?>"><?php printf( __( 'jrBlog Responsive Wordpress Theme &copy; %s', 'jrblog' ), 'jrConway Programming' ); ?></a>
 			</div><!-- .site-info -->
+			<div class="site-footer">
+			</div><!-- .site-footer -->
+			<div class="site-footer-bg">
+
+			</div><!-- .site-footer-bg -->
 		</footer><!-- #colophon -->
 	</div><!-- #page -->
 
