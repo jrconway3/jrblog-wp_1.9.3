@@ -9,12 +9,12 @@ This template utilizes TwentyTwelve as a base, Twitter Bootstrap, and Less. The 
 All content areas that may potentially be editable are created as Widget Areas. Even the header can be made into a widget area if no header image is provided.
 
 
-## WIP
+### WIP
 
 At this point in time it is still work-in-progress. I can only do so much while working on other things. I'm going to try and make nightly updates from now on, even if its a couple of minor issues, but I can't guarantee a thing.
 
 
-### Update #5
-Made quite a few more fixes today. I redid the footer and main content area to be like the old design I had created before. I also fixed up the sidebar so it looks better and changed the footer a little so I can make it larger.
+## Update #6
+Ok, this is basically done now. At least, its ready to go live. There's still some additional things I need to do with it, though. For example, I need to add a bunch of social sharing buttons to blog posts. I also need to add a lot of widget areas to various places, and I have so far been unable to make the theme responsive. I'm still working on trying to rectify these issues.
 
-The only thing left is to add a widget to the header, and to add in all the footer widgets. I'll also have Theme Options for the Copyright as an optional usage.
+In any case, though, its done enough for me to put the site online, which is my primary goal. I'll still continue to work on this until I finish all the features I want. Then I can start to expand it and make more themes using this base template.

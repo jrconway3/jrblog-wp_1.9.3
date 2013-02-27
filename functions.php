@@ -157,20 +157,13 @@ function jrblog_scripts_styles() {
 	 * Loads our main stylesheet.
 	 */
 	wp_enqueue_style( 'jrblog-style', get_stylesheet_uri() );
-	wp_enqueue_style( 'jrc-styles', get_template_directory_uri() . '/css/style.less');
-
-	/*
-	 * Loads the Internet Explorer specific stylesheet.
-	 */
-	wp_enqueue_style( 'jrblog-ie', get_template_directory_uri() . '/css/ie.css', array( 'jrblog-style' ), '20121010' );
-	$wp_styles->add_data( 'jrblog-ie', 'conditional', 'lt IE 9' );
+	wp_enqueue_style( 'jrblog-styles', get_template_directory_uri() . '/css/style.less');
 
 	/*
 	 * Loads all required Javascript files.
 	 */
 	wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/js/libs/modernizr-2.0.6.min.js', array( 'jquery' ), '2.0.6' );
-	wp_enqueue_script( 'gumby', get_template_directory_uri() . '/js/libs/gumby.min.js', array( 'jquery' ), '1.1' );
-	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '2.2.1' );
+	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '2.3.0' );
 }
 add_action( 'wp_enqueue_scripts', 'jrblog_scripts_styles' );
 
@@ -271,7 +264,7 @@ function jrblog_widgets_init() {
 	) );
 	register_sidebar( array(
 		'name' => __( 'Header Sidebar', 'jrblog' ),
-		'id' => 'sidebar-1',
+		'id' => 'header-2',
 		'description' => __( 'Header sidebar to the right of the header image.', 'jrblog' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',

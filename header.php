@@ -69,6 +69,7 @@
 						<?php dynamic_sidebar('header-2'); ?>
 					</aside>
 				<?php endif; ?>
+				<div class="clear">&nbsp;</div>
 			</section>
 
 			<nav id="site-navigation" class="main-navigation" role="navigation">

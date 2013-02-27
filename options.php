@@ -62,6 +62,15 @@ function optionsframework_options() {
 		'class' => 'mini',
 		'type'  => 'text');
 
+	// Header Width
+	$options[] = array(
+		'name'  => __('Copyright Text', 'options_framework_theme'),
+		'desc'  => __('The text for the copyright to go in the footer. Can also be replaced by a widget.', 'options_framework_theme'),
+		'id'    => 'footer_copyright',
+		'std'   => '',
+		'class' => '',
+		'type'  => 'text');
+
 	return $options;
 }
 

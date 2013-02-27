@@ -16,8 +16,19 @@
 		<footer id="colophon" role="contentinfo">
 			<div class="site-bar">&nbsp;</div><!-- .site-bar -->
 			<div class="site-info">
-				<?php do_action( 'jrblog_credits' ); ?>
-				<a href="<?php echo esc_url( __( 'http://www.jrconway.net/', 'jrblog' ) ); ?>" title="<?php esc_attr_e( 'Responsive Blog Theme for Wordpress', 'jrblog' ); ?>"><?php printf( __( 'jrBlog Responsive Wordpress Theme &copy; %s', 'jrblog' ), 'jrConway Programming' ); ?></a>
+				<div class="copyright-main">
+					<?php if(is_active_sidebar('copyright-1')) : ?>
+						<?php dynamic_sidebar('copyright-1'); ?>
+					<?php elseif(of_get_option('footer_copyright')): ?>
+						<?php echo of_get_option('footer_copyright', 'no entry'); ?>
+					<?php else: ?>
+						<?php do_action( 'jrblog_credits' ); ?>
+						<a href="<?php echo esc_url( __( 'http://www.jrconway.net/', 'jrblog' ) ); ?>" title="<?php esc_attr_e( 'Responsive Blog Theme for Wordpress', 'jrblog' ); ?>"><?php printf( __( 'jrBlog Responsive Wordpress Theme &copy; %s', 'jrblog' ), 'jrConway Programming' ); ?></a>
+					<?php endif; ?>
+				</div>
+				<aside class="copyright-aside">
+
+				</aside>
 			</div><!-- .site-info -->
 			<div class="site-footer">
 			</div><!-- .site-footer -->
