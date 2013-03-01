@@ -1,0 +1,120 @@
+/* =======================================================================
+   JRConway Blog Templates 1.0 Text Styles
+   =======================================================================*/
+
+
+/* Body */
+html, body {
+	font-size: @fnt-size1;
+}
+
+
+/* Links */
+a {
+	color: #CC99CC;
+}
+a:hover {
+	color: #ff9999;
+}
+
+/* Headers */
+h1, h2, h3, h4, h5, h6 {
+	line-height: 24px;
+	color: #fff;
+}
+h1 {
+	font-size: @fnt-size4;
+}
+h2, h3, h4 {
+	font-size: @fnt-size3;
+}
+h5, h6 {
+	font-size: @fnt-size2;
+}
+.site-header h1, .site-header h1 a, .site-header h2 {
+	.outline;
+	color: @hdr-colr1;
+	width: @width2;
+	margin: 0;
+}
+.site-header h1, .site-header h1 a {
+	.header;
+	font-size: 30px;
+}
+.site-header h2, .site-header h2 a {
+	.header;
+	font-size: 18px;
+	line-height: 1.6;
+}
+
+/* Aligns */
+.alignleft {
+	float: left;
+}
+.alignright {
+	float: right;
+}
+.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Navigation */
+.main-navigation .menu-toggle, .main-navigation .assistive-text {
+	display: none;
+}
+.main-navigation li a {
+	color: #cc00cc;
+	font-weight: bold;
+	font-size: 12px;
+	line-height: 26px;
+}
+.main-navigation li:hover > a,
+.main-navigation a:focus,
+.main-navigation .current-menu-item > a,
+.main-navigation .current-menu-ancestor > a,
+.main-navigation .current_page_item > a,
+.main-navigation .current_page_ancestor > a {
+	color: #cc99cc;
+}
+
+/* Sidebars */
+.wrapper > .widget-area h3 {
+	font-size: @fnt-size1;
+}
+.wrapper > .widget-area,
+.wrapper > .widget-area li,
+.wrapper > .widget-area div,
+.wrapper > .widget-area span {
+	color: @glb-color1;
+	font-size: @fnt-size5;
+	text-align: left;
+}
+
+/* Paragraphs */
+p {
+	color: #fff;
+}
+blockquote, blockquote p {
+	font-size: @fnt-size1;
+}
+
+/* Assistive text */
+.assistive-text {
+	position: absolute !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+}
+.main-navigation a.assistive-text:active,
+.main-navigation a.assistive-text:focus {
+	background: #eee;
+	border-bottom: 1px solid #ddd;
+	color: #1982d1;
+	clip: auto !important;
+	font-size: 12px;
+	position: absolute;
+	text-decoration: underline;
+	top: 0;
+	left: 7.6%;
+}

@@ -1,0 +1,39 @@
+/* =======================================================================
+   jrBlog Template 1.0 Mixins
+   =======================================================================*/
+
+// Wrappers
+.full() {
+	width: 100%;
+	max-width: 100%;
+}
+.wrapping() {
+	.makeColumn(12);
+	.container-fixed();
+	float: none;
+}
+.segment() {
+
+}
+
+// Shadows
+.textShadow(@h: 2px, @v: 4px, @blur: 5px, @color: rgba(0,0,0,0.5)) {
+	text-shadow: @arguments;
+}
+.textEmboss(@color: rgba(0,0,0,0.5)) {
+	.textShadow(0, -1px, 5px, @color);
+}
+.boxShadow(@h: 2px, @v: 4px, @blur: 5px, @color: rgba(0,0,0,0.5)) {
+	.box-shadow(@arguments);
+}
+.boxEmboss(@color: rgba(0,0,0,0.5)) {
+	.boxShadow(0, -1px, 5px, @color);
+}
+
+// Headers
+.header() {
+	font-weight: bold;
+	font-family: Verdana, Arial, sans-serif;
+	letter-spacing: 3px;
+	-webkit-transition-duration: 1s;
+}

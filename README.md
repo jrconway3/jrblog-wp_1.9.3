@@ -14,7 +14,7 @@ All content areas that may potentially be editable are created as Widget Areas. 
 At this point in time it is still work-in-progress. I can only do so much while working on other things. I'm going to try and make nightly updates from now on, even if its a couple of minor issues, but I can't guarantee a thing.
 
 
-## Update #6
-Ok, this is basically done now. At least, its ready to go live. There's still some additional things I need to do with it, though. For example, I need to add a bunch of social sharing buttons to blog posts. I also need to add a lot of widget areas to various places, and I have so far been unable to make the theme responsive. I'm still working on trying to rectify these issues.
+## Update #7
+Made some fixes to my LESS files to make them cleaner overall. The way I was doing it worked, but it wasn't very clean, and after some tweaking I managed to get it to work just by importing all my less stylesheets together into style.less. Before I couldn't get it working that way for some reason. I also added some fixes for a few styles from Twenty Twelve which were broken.
 
-In any case, though, its done enough for me to put the site online, which is my primary goal. I'll still continue to work on this until I finish all the features I want. Then I can start to expand it and make more themes using this base template.
+The next step is to add some more widget areas into the theme so I can put up social media buttons, and add social sharing links to other parts of the site.
