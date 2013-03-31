@@ -13,8 +13,13 @@ All content areas that may potentially be editable are created as Widget Areas. 
 
 At this point in time it is still work-in-progress. I can only do so much while working on other things. I'm going to try and make nightly updates from now on, even if its a couple of minor issues, but I can't guarantee a thing.
 
+### TO DO
+Things still to do:
+
+1.) Add some SEO options. Primarily thinking of Google Code right now so I don't have to use an external plugin.
+
+2.) Add Responsive Design. This is still something I need to research some more, and will be the final step to finishing this project.
+
 
 ## Update #7
-Made some fixes to my LESS files to make them cleaner overall. The way I was doing it worked, but it wasn't very clean, and after some tweaking I managed to get it to work just by importing all my less stylesheets together into style.less. Before I couldn't get it working that way for some reason. I also added some fixes for a few styles from Twenty Twelve which were broken.
-
-The next step is to add some more widget areas into the theme so I can put up social media buttons, and add social sharing links to other parts of the site.
+Been a while, but I've been really busy. I added a fully functioning Socia Media Theme Options section for displaying Share links on the blog. I also fixed a number of bugs in the system, too, including some graphical bugs, and I've added Font Awesome to my LESS stylesheets.

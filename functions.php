@@ -14,202 +14,89 @@
  * @since jrBlog 1.0
  */
 
-/**
- * Sets up the content width value based on the theme's design and stylesheet.
- */
-if ( ! isset( $content_width ) )
-	$content_width = 625;
+
+#######################################
+## -- START CUSTOMIZATION OPTIONS
+#######################################
 
 /**
- * Sets up theme defaults and registers the various WordPress features that
- * jrBlog supports.
+ * Set Custom Contact Fields
  *
- * @uses load_theme_textdomain() For translation/localization support.
- * @uses add_editor_style() To add a Visual Editor stylesheet.
- * @uses add_theme_support() To add support for post thumbnails, automatic feed links,
- * 	custom background, and post formats.
- * @uses register_nav_menu() To add support for navigation menus.
- * @uses set_post_thumbnail_size() To set a custom post thumbnail size.
- *
- * @since jrBlog 1.0
+ * @since JRConway Blog Template 1.0
  */
-function jrblog_setup() {
-	/*
-	 * Makes Template available for translation.
-	 *
-	 * Translations can be added to the /languages/ directory.
-	 */
-	load_theme_textdomain( 'jrblog', get_template_directory() . '/languages' );
+function jrblog_custom_contact() {
+	/**
+	  * Format in the following way:
+	  *
+	  * "type" => array(
+	  *     "name"   => "Type",    // Full name of contact type
+	  *     "url"    => "http://", // URL location to personal profile
+	  *     "url"    => "",        // Don't set to disable follow options in theme options
+	  *     "share"  => true,      // Enable sharing options in theme options
+	  *     "share"  => false,     // Disable sharing options in theme options
+	  * ),
+	  *
+	  *
+	  * To disable existing fields:
+	  *
+	  * "type" => false,           // Set full array to "false" to remove it entirely.
+	  */
 
-	/*
-	 * Import WP Less
-	 *
-	 * This will be used for all available stylesheets.
-	 */
-	require_once( 'wp-less/wp-less.php' );
+	// Return Array of Contact Fields
+	$fields = array(
+		"aim"              => false,
+		"yim"              => false,
+		"jabber"           => false,
+		"skype"            => array(
+			"name"   => "Skype",
+			"url"    => "",
+			"share"  => false
+		),
+		"facebook"         => array(
+			"name"   => "Facebook",
+			"url"    => "http://www.facebook.com/",
+			"share"  => true
+		),
+		"twitter"          => array(
+			"name"   => "Twitter",
+			"url"    => "http://www.twitter.com/",
+			"share"  => true
+		),
+		"googleplus"       => array(
+			"name"   => "Google+",
+			"url"    => "http://plus.google.com/",
+			"share"  => true
+		),
+		"linkedin"         => array(
+			"name"   => "LinkedIn",
+			"url"    => "http://www.linkedin.com/pub/",
+			"share"  => true
+		),
+		"myspace"          => array(
+			"name"   => "MySpace",
+			"url"    => "http://new.myspace.com/",
+			"share"  => false
+		),
+		"behance"          => array(
+			"name"   => "Behance",
+			"url"    => "http://www.behance.net/",
+			"share"  => false
+		),
+		"github"           => array(
+			"name"   => "Github",
+			"url"    => "http://www.github.com/",
+			"share"  => false
+		),
+		"stackoverflow"    => array(
+			"name"   => "StackOverflow",
+			"url"    => "http://www.stackoverflow.com/users/",
+			"share"  => false
+		)
+	);
 
-	// This theme styles the visual editor with editor-style.css to match the theme style.
-	add_editor_style();
-
-	// Adds RSS feed links to <head> for posts and comments.
-	add_theme_support( 'automatic-feed-links' );
-
-	// This theme supports a variety of post formats.
-	add_theme_support( 'post-formats', array( 'aside', 'image', 'link', 'quote', 'status' ) );
-
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menu( 'primary', __( 'Primary Menu', 'jrblog' ) );
-
-	/*
-	 * This theme supports custom background color and image, and here
-	 * we also set up the default background color.
-	 */
-	add_theme_support( 'custom-background', array(
-		'default-color' => 'e6e6e6',
-	) );
-
-	// This theme uses a custom image size for featured images, displayed on "standard" posts.
-	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
+	// Return Contact Fields
+	return $fields;
 }
-add_action( 'after_setup_theme', 'jrblog_setup' );
-
-/* 
- * Loads the Options Panel
- *
- * If you're loading from a child theme use stylesheet_directory
- * instead of template_directory
- */
-if ( !function_exists( 'optionsframework_init' ) ) {
-	define( 'OPTIONS_FRAMEWORK_DIRECTORY', get_template_directory_uri() . '/inc/' );
-	require_once dirname( __FILE__ ) . '/inc/options-framework.php';
-}
-
-/* 
- * Temporary notice, will be removed once file uploader
- * is stable
- */
-function optionsframework_admin_notice(){
-    echo '<div class="updated">
-       <p>Options Framework Development Version: Help test the <a href="https://github.com/devinsays/options-framework-plugin/issues/135#issuecomment-12031802">new file uploader</a></p>
-    </div>';
-}
-add_action( 'admin_notices', 'optionsframework_admin_notice' );
-
-/**
- * Enqueues scripts and styles for front-end.
- *
- * @since jrBlog 1.0
- */
-function jrblog_scripts_styles() {
-	global $wp_styles;
-
-	/*
-	 * Adds JavaScript to pages with the comment form to support
-	 * sites with threaded comments (when in use).
-	 */
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
-		wp_enqueue_script( 'comment-reply' );
-
-	/*
-	 * Adds JavaScript for handling the navigation menu hide-and-show behavior.
-	 */
-	wp_enqueue_script( 'jrblog-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '1.0', true );
-
-	/*
-	 * Loads our special font CSS file.
-	 *
-	 * The use of Open Sans by default is localized. For languages that use
-	 * characters not supported by the font, the font can be disabled.
-	 *
-	 * To disable in a child theme, use wp_dequeue_style()
-	 * function mytheme_dequeue_fonts() {
-	 *     wp_dequeue_style( 'jrblog-fonts' );
-	 * }
-	 * add_action( 'wp_enqueue_scripts', 'mytheme_dequeue_fonts', 11 );
-	 */
-
-	/* translators: If there are characters in your language that are not supported
-	   by Open Sans, translate this to 'off'. Do not translate into your own language. */
-	if ( 'off' !== _x( 'on', 'Open Sans font: on or off', 'jrblog' ) ) {
-		$subsets = 'latin,latin-ext';
-
-		/* translators: To add an additional Open Sans character subset specific to your language, translate
-		   this to 'greek', 'cyrillic' or 'vietnamese'. Do not translate into your own language. */
-		$subset = _x( 'no-subset', 'Open Sans font: add new subset (greek, cyrillic, vietnamese)', 'jrblog' );
-
-		if ( 'cyrillic' == $subset )
-			$subsets .= ',cyrillic,cyrillic-ext';
-		elseif ( 'greek' == $subset )
-			$subsets .= ',greek,greek-ext';
-		elseif ( 'vietnamese' == $subset )
-			$subsets .= ',vietnamese';
-
-		$protocol = is_ssl() ? 'https' : 'http';
-		$query_args = array(
-			'family' => 'Open+Sans:400italic,700italic,400,700',
-			'subset' => $subsets,
-		);
-		wp_enqueue_style( 'jrblog-fonts', add_query_arg( $query_args, "$protocol://fonts.googleapis.com/css" ), array(), null );
-	}
-
-	/*
-	 * Loads our main stylesheet.
-	 */
-	wp_enqueue_style( 'jrblog-style', get_stylesheet_uri() );
-	wp_enqueue_style( 'jrblog-styles', get_template_directory_uri() . '/css/style.less');
-
-	/*
-	 * Loads all required Javascript files.
-	 */
-	wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/js/libs/modernizr-2.0.6.min.js', array( 'jquery' ), '2.0.6' );
-	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '2.3.0' );
-}
-add_action( 'wp_enqueue_scripts', 'jrblog_scripts_styles' );
-
-/**
- * Creates a nicely formatted and more specific title element text
- * for output in head of document, based on current view.
- *
- * @since jrBlog 1.0
- *
- * @param string $title Default title text for current view.
- * @param string $sep Optional separator.
- * @return string Filtered title.
- */
-function jrblog_wp_title( $title, $sep ) {
-	global $paged, $page;
-
-	if ( is_feed() )
-		return $title;
-
-	// Add the site name.
-	$title .= get_bloginfo( 'name' );
-
-	// Add the site description for the home/front page.
-	$site_description = get_bloginfo( 'description', 'display' );
-	if ( $site_description && ( is_home() || is_front_page() ) )
-		$title = "$title $sep $site_description";
-
-	// Add a page number if necessary.
-	if ( $paged >= 2 || $page >= 2 )
-		$title = "$title $sep " . sprintf( __( 'Page %s', 'jrblog' ), max( $paged, $page ) );
-
-	return $title;
-}
-add_filter( 'wp_title', 'jrblog_wp_title', 10, 2 );
-
-/**
- * Makes our wp_nav_menu() fallback -- wp_page_menu() -- show a home link.
- *
- * @since jrBlog 1.0
- */
-function jrblog_page_menu_args( $args ) {
-	if ( ! isset( $args['show_home'] ) )
-		$args['show_home'] = true;
-	return $args;
-}
-add_filter( 'wp_page_menu_args', 'jrblog_page_menu_args' );
 
 /**
  * Registers our page widget areas.
@@ -351,6 +238,231 @@ function jrblog_widgets_init() {
 }
 add_action( 'widgets_init', 'jrblog_widgets_init' );
 
+/**
+ * Extends the default WordPress body class.
+ *
+ * @since jrBlog 1.0
+ *
+ * @param array Existing class values.
+ * @return array Filtered class values.
+ */
+function jrblog_body_class( $classes ) {
+	$background_color = get_background_color();
+
+	if ((!is_active_sidebar( 'sidebar-1' ) && !is_active_sidebar( 'sidebar-2')) ||
+			is_page_template( 'page-templates/full-width.php' ) )
+		$classes[] = 'full-width';
+
+	if ( is_active_sidebar( 'sidebar-1' ) && is_active_sidebar( 'sidebar-2' ) )
+		$classes[] = 'two-sidebars';
+
+	if ( is_active_sidebar( 'copyright-2' ) || jrblog_follow_icons())
+		$classes[] = 'copyright-columns';
+
+	if ( jrblog_share_buttons() )
+		$classes[] = 'share-posts';
+
+	if ( is_page_template( 'templates/front-page.php' ) ) {
+		$classes[] = 'template-front-page';
+		if ( has_post_thumbnail() )
+			$classes[] = 'has-post-thumbnail';
+	}
+
+	if ( ! is_multi_author() )
+		$classes[] = 'single-author';
+
+	return $classes;
+}
+add_filter( 'body_class', 'jrblog_body_class' );
+
+#######################################
+## -- END CUSTOMIZATION OPTIONS
+#######################################
+
+
+
+#######################################
+## -- START INITIALIZATION FUNCTIONS
+#######################################
+
+/**
+ * Sets up theme defaults and registers the various WordPress features that
+ * jrBlog supports.
+ *
+ * @uses load_theme_textdomain() For translation/localization support.
+ * @uses add_editor_style() To add a Visual Editor stylesheet.
+ * @uses add_theme_support() To add support for post thumbnails, automatic feed links,
+ * 	custom background, and post formats.
+ * @uses register_nav_menu() To add support for navigation menus.
+ * @uses set_post_thumbnail_size() To set a custom post thumbnail size.
+ *
+ * @since jrBlog 1.0
+ */
+function jrblog_setup() {
+	/*
+	 * Import WP Less
+	 *
+	 * This will be used for all available stylesheets.
+	 */
+	require_once( 'wp-less/wp-less.php' );
+
+	/*
+	 * Makes Template available for translation.
+	 *
+	 * Translations can be added to the /languages/ directory.
+	 */
+	load_theme_textdomain( 'jrblog', get_template_directory() . '/languages' );
+
+	// This theme styles the visual editor with editor-style.css to match the theme style.
+	add_editor_style();
+
+	// Adds RSS feed links to <head> for posts and comments.
+	add_theme_support( 'automatic-feed-links' );
+
+	// This theme supports a variety of post formats.
+	add_theme_support( 'post-formats', array( 'aside', 'image', 'link', 'quote', 'status' ) );
+
+	// This theme uses wp_nav_menu() in five locations.
+	register_nav_menu( 'primary', __( 'Primary Menu', 'jrblog' ) );
+	register_nav_menu( 'footer-1', __( 'Footer 1', 'jrblog' ) );
+	register_nav_menu( 'footer-2', __( 'Footer 2', 'jrblog' ) );
+	register_nav_menu( 'footer-3', __( 'Footer 3', 'jrblog' ) );
+	register_nav_menu( 'footer-4', __( 'Footer 4', 'jrblog' ) );
+
+	// This theme uses a custom image size for featured images, displayed on "standard" posts.
+	add_theme_support( 'post-thumbnails' );
+	set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
+}
+add_action( 'after_setup_theme', 'jrblog_setup' );
+
+
+/* 
+ * Loads the Options Panel
+ *
+ * If you're loading from a child theme use stylesheet_directory
+ * instead of template_directory
+ */
+if ( !function_exists( 'optionsframework_init' ) ) {
+	define( 'OPTIONS_FRAMEWORK_DIRECTORY', get_template_directory_uri() . '/inc/' );
+	require_once dirname( __FILE__ ) . '/inc/options-framework.php';
+}
+
+/**
+ * Enqueues scripts and styles for front-end.
+ *
+ * @since jrBlog 1.0
+ */
+function jrblog_scripts_styles() {
+	global $wp_styles;
+
+	/*
+	 * Adds JavaScript to pages with the comment form to support
+	 * sites with threaded comments (when in use).
+	 */
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
+		wp_enqueue_script( 'comment-reply' );
+
+	/*
+	 * Adds JavaScript for handling the navigation menu hide-and-show behavior.
+	 */
+	wp_enqueue_script( 'jrblog-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '1.0', true );
+
+	/*
+	 * Loads our special font CSS file.
+	 *
+	 * The use of Open Sans by default is localized. For languages that use
+	 * characters not supported by the font, the font can be disabled.
+	 *
+	 * To disable in a child theme, use wp_dequeue_style()
+	 * function mytheme_dequeue_fonts() {
+	 *     wp_dequeue_style( 'jrblog-fonts' );
+	 * }
+	 * add_action( 'wp_enqueue_scripts', 'mytheme_dequeue_fonts', 11 );
+	 */
+
+	/* translators: If there are characters in your language that are not supported
+	   by Open Sans, translate this to 'off'. Do not translate into your own language. */
+	if ( 'off' !== _x( 'on', 'Open Sans font: on or off', 'jrblog' ) ) {
+		$subsets = 'latin,latin-ext';
+
+		/* translators: To add an additional Open Sans character subset specific to your language, translate
+		   this to 'greek', 'cyrillic' or 'vietnamese'. Do not translate into your own language. */
+		$subset = _x( 'no-subset', 'Open Sans font: add new subset (greek, cyrillic, vietnamese)', 'jrblog' );
+
+		if ( 'cyrillic' == $subset )
+			$subsets .= ',cyrillic,cyrillic-ext';
+		elseif ( 'greek' == $subset )
+			$subsets .= ',greek,greek-ext';
+		elseif ( 'vietnamese' == $subset )
+			$subsets .= ',vietnamese';
+
+		$protocol = is_ssl() ? 'https' : 'http';
+		$query_args = array(
+			'family' => 'Open+Sans:400italic,700italic,400,700',
+			'subset' => $subsets,
+		);
+		wp_enqueue_style( 'jrblog-fonts', add_query_arg( $query_args, "$protocol://fonts.googleapis.com/css" ), array(), null );
+	}
+
+	/*
+	 * Loads our main stylesheet.
+	 */
+	wp_enqueue_style( 'jrblog-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'jrblog-styles', get_template_directory_uri() . '/css/style.less');
+
+	/*
+	 * Loads all required Javascript files.
+	 */
+	wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/js/libs/modernizr-2.0.6.min.js', array( 'jquery' ), '2.0.6' );
+	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '2.3.0' );
+}
+add_action( 'wp_enqueue_scripts', 'jrblog_scripts_styles' );
+
+/**
+ * Creates a nicely formatted and more specific title element text
+ * for output in head of document, based on current view.
+ *
+ * @since jrBlog 1.0
+ *
+ * @param string $title Default title text for current view.
+ * @param string $sep Optional separator.
+ * @return string Filtered title.
+ */
+function jrblog_wp_title( $title, $sep ) {
+	global $paged, $page;
+
+	if ( is_feed() )
+		return $title;
+
+	// Add the site name.
+	$title .= get_bloginfo( 'name' );
+
+	// Add the site description for the home/front page.
+	$site_description = get_bloginfo( 'description', 'display' );
+	if ( $site_description && ( is_home() || is_front_page() ) )
+		$title = "$title $sep $site_description";
+
+	// Add a page number if necessary.
+	if ( $paged >= 2 || $page >= 2 )
+		$title = "$title $sep " . sprintf( __( 'Page %s', 'jrblog' ), max( $paged, $page ) );
+
+	return $title;
+}
+add_filter( 'wp_title', 'jrblog_wp_title', 10, 2 );
+
+/**
+ * Makes our wp_nav_menu() fallback -- wp_page_menu() -- show a home link.
+ *
+ * @since jrBlog 1.0
+ */
+function jrblog_page_menu_args( $args ) {
+	if ( ! isset( $args['show_home'] ) )
+		$args['show_home'] = true;
+	return $args;
+}
+add_filter( 'wp_page_menu_args', 'jrblog_page_menu_args' );
+
+
 if ( ! function_exists( 'jrblog_content_nav' ) ) :
 /**
  * Displays navigation to next/previous pages when applicable.
@@ -466,11 +578,11 @@ function jrblog_entry_meta() {
 
 	// Translators: 1 is category, 2 is tag, 3 is the date and 4 is the author's name.
 	if ( $tag_list ) {
-		$utility_text = __( 'This entry was posted in %1$s and tagged %2$s on %3$s<span class="by-author"> by %4$s</span>.', 'jrblog' );
+		$utility_text = __( 'Posted in %1$s and tagged %2$s on %3$s<span class="by-author"> by %4$s</span>.', 'jrblog' );
 	} elseif ( $categories_list ) {
-		$utility_text = __( 'This entry was posted in %1$s on %3$s<span class="by-author"> by %4$s</span>.', 'jrblog' );
+		$utility_text = __( 'Posted in %1$s on %3$s<span class="by-author"> by %4$s</span>.', 'jrblog' );
 	} else {
-		$utility_text = __( 'This entry was posted on %3$s<span class="by-author"> by %4$s</span>.', 'jrblog' );
+		$utility_text = __( 'Posted on %3$s<span class="by-author"> by %4$s</span>.', 'jrblog' );
 	}
 
 	printf(
@@ -482,65 +594,6 @@ function jrblog_entry_meta() {
 	);
 }
 endif;
-
-/**
- * Extends the default WordPress body class to denote:
- * 1. Using a full-width layout, when no active widgets in the sidebar
- *    or full-width template.
- * 2. Front Page template: thumbnail in use and number of sidebars for
- *    widget areas.
- * 3. White or empty background color to change the layout and spacing.
- * 4. Custom fonts enabled.
- * 5. Single or multiple authors.
- *
- * @since jrBlog 1.0
- *
- * @param array Existing class values.
- * @return array Filtered class values.
- */
-function jrblog_body_class( $classes ) {
-	$background_color = get_background_color();
-
-	if ( ! is_active_sidebar( 'sidebar-1' ) || is_page_template( 'page-templates/full-width.php' ) )
-		$classes[] = 'full-width';
-
-	if ( is_page_template( 'page-templates/front-page.php' ) ) {
-		$classes[] = 'template-front-page';
-		if ( has_post_thumbnail() )
-			$classes[] = 'has-post-thumbnail';
-		if ( is_active_sidebar( 'sidebar-2' ) && is_active_sidebar( 'sidebar-3' ) )
-			$classes[] = 'two-sidebars';
-	}
-
-	if ( empty( $background_color ) )
-		$classes[] = 'custom-background-empty';
-	elseif ( in_array( $background_color, array( 'fff', 'ffffff' ) ) )
-		$classes[] = 'custom-background-white';
-
-	// Enable custom font class only if the font CSS is queued to load.
-	if ( wp_style_is( 'jrblog-fonts', 'queue' ) )
-		$classes[] = 'custom-font-enabled';
-
-	if ( ! is_multi_author() )
-		$classes[] = 'single-author';
-
-	return $classes;
-}
-add_filter( 'body_class', 'jrblog_body_class' );
-
-/**
- * Adjusts content_width value for full-width and single image attachment
- * templates, and when there are no active widgets in the sidebar.
- *
- * @since jrBlog 1.0
- */
-function jrblog_content_width() {
-	if ( is_page_template( 'page-templates/full-width.php' ) || is_attachment() || ! is_active_sidebar( 'sidebar-1' ) ) {
-		global $content_width;
-		$content_width = 960;
-	}
-}
-add_action( 'template_redirect', 'jrblog_content_width' );
 
 /**
  * Add postMessage support for site title and description for the Theme Customizer.
@@ -566,7 +619,6 @@ function jrblog_customize_preview_js() {
 }
 add_action( 'customize_preview_init', 'jrblog_customize_preview_js' );
 
-
 if ( ! function_exists( 'jrblog_schema' ) ):
 /**
  * Gets Site Schema From Theme Options
@@ -587,3 +639,289 @@ function jrblog_schema() {
 	}
 }
 endif; // jrblog_schema
+
+/**
+ * Add Extra Contact Fields
+ *
+ * @since JRConway Blog Template 1.0
+ */
+function jrblog_contact_info($contactmethods) {
+	// Get Social Sites
+	$fields = jrblog_custom_contact();
+
+	// Loop Social Sites
+	foreach($fields as $code => $field) {
+		// Valid Site?
+		if(!empty($field) && is_array($field) && count($field)) {
+			// Add to Contact Methods
+			$contactmethods[$code] = $field['name'];
+		}
+		elseif(empty($field['name'])) {
+			// Delete from Contact Methods
+			unset($contactmethods[$code]);
+		}
+	}
+
+	// Return Contact Methods
+	return $contactmethods;
+}
+add_filter('user_contactmethods', 'jrblog_contact_info');
+
+#######################################
+## -- END INITIALIZATION FUNCTIONS
+#######################################
+
+
+
+#######################################
+## -- START SOCIAL FUNCTIONS
+#######################################
+
+/**
+ * Create Social Share Buttons
+ *
+ * @author David A Conway Jr.
+ * @param string $url  : the url to share; defaults to current page's url
+ * @param string $text : the text in the share popup; defaults to current page's title
+ * @since JRConway Blog Template 1.0
+ */
+function jrblog_share_buttons($url = '', $text = '') {
+	// All Sharing Disabled?
+	if(of_get_option('share_disable')) {
+		return '';
+	}
+
+	// Get Social Sites
+	$fields = jrblog_custom_contact();
+	$html   = '';
+
+	// Loop Social Sites
+	foreach($fields as $code => $field) {
+		// Valid Site?
+		if(!empty($field) && is_array($field) && count($field)) {
+			// Set Unique Variables
+			$share = of_get_option($code . '_share');
+			$func  = 'jrblog_' . $code . '_button';
+
+			// Add to Contact Methods
+			if(!empty($share) && function_exists($func)) {
+				// Get Share Button
+				$html .= $func($url, $text);
+			}
+		}
+	}
+
+	// Return Share HTML
+	return $html;
+}
+
+/**
+ * Create Facebook Share Button
+ *
+ * @author David A Conway Jr.
+ * @param string $url  : the url to share; defaults to current page's url
+ * @param string $text : the text in the share popup; defaults to current page's title
+ * @since JRConway Blog Template 1.0
+ */
+function jrblog_facebook_button($url = '', $text = '') {
+	// Include HREF?
+	$href = '';
+	if(!empty($url)) {
+		$href = ' data-href="' . $url . '"';
+	}
+
+	// Include Text?
+	$cont = '';
+	if(!empty($text)) {
+		$cont = ' data-text="' . $text . '"';
+	}
+
+	// Generate HTML
+	$html = '<div class="fb-like"' . $href . $prev . ' data-send="false" data-layout="button_count" data-width="80" data-show-faces="false"></div>';
+
+	// Return HTML Code
+	return $html;
+}
+
+/**
+ * Create Twitter Share Button
+ *
+ * @author David A Conway Jr.
+ * @param string $url  : the url to share; defaults to current page's url
+ * @param string $text : the text in the share popup; defaults to current page's title
+ * @since JRConway Blog Template 1.0
+ */
+function jrblog_twitter_button($url = '', $text = '') {
+	// Include HREF?
+	$href = '';
+	if(!empty($url)) {
+		$href = ' data-url="' . $url . '"';
+	}
+
+	// Include Text?
+	$cont = '';
+	if(!empty($text)) {
+		$cont = ' data-text="' . $text . '"';
+	}
+
+	// Generate HTML
+	$html = '<a href="https://twitter.com/share" class="twitter-share-button"' . $href . $cont . '>Tweet</a>';
+
+	// Return HTML Code
+	return $html;
+}
+
+/**
+ * Create Google+ Share Button
+ *
+ * @author David A Conway Jr.
+ * @param string $url  : the url to share; defaults to current page's url
+ * @param string $text : the text in the share popup; defaults to current page's title
+ * @since JRConway Blog Template 1.0
+ */
+function jrblog_googleplus_button($url = '', $text = '') {
+	// Include HREF?
+	$href = '';
+	if(!empty($url)) {
+		$href = ' data-href="' . $url . '"';
+	}
+
+	// Include Text?
+	$cont = '';
+	if(!empty($text)) {
+		$cont = ' data-text="' . $text . '"';
+	}
+
+	// Generate HTML
+	$html = '<div class="g-plus" data-action="share" data-annotation="bubble"' . $href . '></div>';
+
+	// Return HTML Code
+	return $html;
+}
+
+/**
+ * Create LinkedIn Share Button
+ *
+ * @author David A Conway Jr.
+ * @param string $url  : the url to share; defaults to current page's url
+ * @param string $text : the text in the share popup; defaults to current page's title
+ * @since JRConway Blog Template 1.0
+ */
+function jrblog_linkedin_button($url = '', $text = '') {
+	// Include HREF?
+	$href = '';
+	if(!empty($url)) {
+		$href = ' data-url="' . $url . '"';
+	}
+
+	// Include Text?
+	$cont = '';
+	if(!empty($text)) {
+		$cont = ' data-text="' . $text . '"';
+	}
+
+	// Generate HTML
+	$html = '<script type="IN/Share"' . $href . ' data-counter="right"></script>';
+
+	// Return HTML Code
+	return $html;
+}
+
+
+/**
+ * Create Social Follow Icons
+ *
+ * @author David A Conway Jr.
+ * @since JRConway Blog Template 1.0
+ */
+function jrblog_follow_icons() {
+	// All Links Disabled?
+	if(of_get_option('follow_disable')) {
+		return '';
+	}
+
+
+	// RSS Follow Enabled?
+	$html    = '';
+	$code    = 'rss';
+	$size    = of_get_option('follow_dims');
+	$follow  = of_get_option($code . '_follow');
+	if(!empty($follow)) {
+		// Set RSS Variables
+		$img     = '';
+		$rss     = '/feed';
+		$url     = 'http://feeds.feedburner.com/';
+		$acct    = of_get_option($code . '_acct');
+		$icon    = of_get_option($code . '_icon');
+		$custom  = of_get_option($code . '_custom');
+		$default = '/images/icons/' . $size . '/' . $code . '.png';
+
+		// Feedburner Enabled?
+		if(!empty($acct)) {
+			// Set Feedburner Feed
+			$feed = $url . $acct;
+		}
+		// Use Internal Feed
+		else {
+			// Set WP Feed
+			$feed = $rss;
+		}
+
+		// Use Custom Button?
+		if(!empty($custom)) {
+			// Set Custom Icon
+			$img = $icon;
+		}
+		// Use Default Button
+		else {
+			// Set Default Icon
+			$img = get_template_directory_uri() . $default;
+		}
+
+		// Add Link HTML
+		$html .= '<a href="' . $url . $acct . '" target="_blank"><img src="' . $img . '" alt="" width="' . $size . '" height="' . $size . '" /></a>';
+	}
+
+
+	// Get Social Sites
+	$fields = jrblog_custom_contact();
+
+	// Loop Social Sites
+	foreach($fields as $code => $field) {
+		// Valid Site?
+		if(!empty($field) && is_array($field) && count($field)) {
+			// Set Unique Variables
+			$img     = '';
+			$url     = $field['url'];
+			$acct    = of_get_option($code . '_acct');
+			$icon    = of_get_option($code . '_icon');
+			$custom  = of_get_option($code . '_custom');
+			$follow  = of_get_option($code . '_follow');
+			$default = '/images/icons/' . $size . '/' . $code . '.png';
+
+			// Add to Contact Methods
+			if(!empty($follow) && !empty($url) && !empty($acct)) {
+				// Use Custom Button?
+				if(!empty($custom)) {
+					// Set Custom Icon
+					$img = $icon;
+				}
+				// Use Default Button
+				else {
+					// Set Default Icon
+					$img = get_template_directory_uri() . $default;
+				}
+
+				// Add Link HTML
+				$html .= '<a href="' . $url . $acct . '" target="_blank"><img src="' . $img . '" alt="" width="' . $size . '" height="' . $size . '" /></a>';
+			}
+		}
+	}
+
+	// Return Share HTML
+	return $html;
+}
+
+#######################################
+## -- END SOCIAL FUNCTIONS
+#######################################

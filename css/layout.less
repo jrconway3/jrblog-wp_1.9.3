@@ -232,32 +232,46 @@ input[type=button], input[type=submit] {
 }
 
 /* Article Header */
-.site-content .entry-header, .comments-area #reply-title {
+.site-content .entry-header, .comments-area #reply-title, .site-content .nav-single {
 	.border-top-radius(@cnt-rdis1);
 	background-color: @cnt-colr1;
 	border: 1px solid #fff;
 	border-bottom: 1px solid #999;
 	font-weight: bold;
-	height: 30px;
 	margin: 0;
 	margin-top: 15px;
 	padding: 8px 8px 2px;
 	text-align: left;
 }
-.site-content h1.entry-title {
+.site-content h1.entry-title, .site-content .nav-single {
 	.border-radius(@cnt-rdis1);
+	padding-bottom: 8px;
+}
+.site-content .nav-next {
+	float: right;
 }
 .site-content .entry-header h1.entry-title {
-	.makeColumn(7);
+	.makeColumn(6);
 	.border-radius(0);
 	margin: 0;
 	padding: 0;
 }
 .site-content .entry-header .comments-link {
-	.makeColumn(1);
+	.makeColumn(2);
 	margin: 0;
 	text-align: right;
 	line-height: 24px;
+}
+.share-posts .entry-header .entry-author {
+	font-size: 10px;
+	text-align: left;
+	line-height: 16px;
+	float: left;
+	width: 100%;
+	margin: 0;
+}
+.share-posts .entry-header .edit-link {
+	float: right;
 }
 
 /* Article Content */
@@ -268,6 +282,19 @@ input[type=button], input[type=submit] {
 	border-bottom: 0;
 	padding: 5px 8px;
 }
+.site-content .entry-content p:last-child {
+	margin-bottom: 0;
+}
+.site-content .entry-content .entry-thumb {
+	float: left;
+	padding: 0;
+	width: 200px;
+	min-height: 100px;
+	overflow: hidden;
+	margin: 0 10px 15px 0;
+}
+
+/* Article Meta */
 .site-content .entry-meta {
 	.border-bottom-radius(@cnt-rdis1);
 	background: @cnt-colr2;	
@@ -277,12 +304,42 @@ input[type=button], input[type=submit] {
 	color: #fff;
 	font-size: 10px;
 }
-.site-content .entry-info {
-	height: 20px;
-}
 .site-content .entry-author {
 	text-align: right;
 }
+.site-content .entry-social {
+	text-overflow: none;
+	text-align: right;
+	height: 20px;
+	margin: 0;
+}
+.site-content .entry-social div,
+.site-content .entry-social iframe,
+.site-content .entry-social .IN-widget {
+	display: inline-block;
+	vertical-align: middle !important;
+	text-align: left;
+	width: 95px !important;
+	height: 20px;
+}
+.site-content .entry-meta .author-info {
+	margin-top: 40px;
+	clear: both;
+	width: 100%;
+}
+.site-content .entry-meta .author-avatar {
+	float: left;
+	margin: 0 10px 5px 0;
+}
+.site-content .entry-meta .author-description p {
+	font-size: 12px;
+	margin: 0;
+}
+.site-content .entry-meta .author-link {
+	text-align: right;
+}
+
+/* Article Comments */
 .comments-area form {
 	.border-bottom-radius(@cnt-rdis1);
 	background: @cnt-colr2;	
@@ -437,4 +494,41 @@ footer[role="contentinfo"] {
 /* Copyright */
 .site-info .copyright-main, .site-info .copyright-aside {
 	margin-top: 20px;
+}
+.copyright-columns .site-info .copyright-main {
+	.makeColumn(7);
+	text-align: left;
+	margin-left: 10px;
+}
+.copyright-columns .site-info .copyright-aside {
+	.makeColumn(5);
+	margin-left: 0;
+	margin-right: 10px;
+	text-align: right;
+}
+.copyright-columns .site-info .copyright-aside a {
+	display: inline-block;
+	margin-left: 10px;
+}
+
+
+
+/* =============
+   Wordpress Standard
+   =============*/
+
+/* Aligns */
+.alignleft {
+	float: left;
+	margin: 0 10px 10px 0;
+}
+.alignright {
+	float: right;
+	text-align: right;
+	margin: 0 0 10px 10px;
+}
+.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }

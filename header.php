@@ -43,6 +43,21 @@
 
 <body <?php body_class(); ?>>
 
+	<!-- START Facebook API -->
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=621195914573310";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	<!-- END Facebook API -->
+
+	<!-- START LinkedIn JS -->
+	<script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
+	<!-- END LinkedIn JS -->
+
 	<div id="page" class="hfeed site">
 		<header id="masthead" class="site-header" role="banner">
 			<section class="topbar">
