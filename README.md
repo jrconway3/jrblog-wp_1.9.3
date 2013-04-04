@@ -16,10 +16,12 @@ At this point in time it is still work-in-progress. I can only do so much while 
 ### TO DO
 Things still to do:
 
-1.) Add some SEO options. Primarily thinking of Google Code right now so I don't have to use an external plugin.
+1.) Finish configuring all widget areas.
 
 2.) Add Responsive Design. This is still something I need to research some more, and will be the final step to finishing this project.
 
 
-## Update #7
-Been a while, but I've been really busy. I added a fully functioning Socia Media Theme Options section for displaying Share links on the blog. I also fixed a number of bugs in the system, too, including some graphical bugs, and I've added Font Awesome to my LESS stylesheets.
+## Update #8
+Cleaned up messy styles for the Author, 404, and Category pages.
+
+Added SEO options for Google Analytics and Google Webmaster.

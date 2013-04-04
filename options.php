@@ -212,14 +212,23 @@ function optionsframework_options() {
 		'name'    => __('SEO Settings', 'options_framework_theme'),
 		'type'    => 'heading');
 
-	// 
-	/*$options[] = array(
-		'name'    => __('Copyright Text', 'options_framework_theme'),
-		'desc'    => __('The text for the copyright to go in the footer. Can also be replaced by a widget.', 'options_framework_theme'),
-		'id'      => 'footer_copyright',
+	// Google Analytics
+	$options[] = array(
+		'name'    => __('Google Analytics ID', 'options_framework_theme'),
+		'desc'    => __('Insert Google Analytics ID and it will automatically be added to the website.', 'options_framework_theme'),
+		'id'      => 'google_analytics',
+		'std'     => '',
+		'class'   => 'mini',
+		'type'    => 'text');
+
+	// Google Webmaster
+	$options[] = array(
+		'name'    => __('Google Webmaster ID', 'options_framework_theme'),
+		'desc'    => __('Insert Google Webmaster ID and it will automatically be added to the website.', 'options_framework_theme'),
+		'id'      => 'google_webmaster',
 		'std'     => '',
 		'class'   => '',
-		'type'    => 'text');*/
+		'type'    => 'text');
 
 	return $options;
 }

@@ -232,7 +232,8 @@ input[type=button], input[type=submit] {
 }
 
 /* Article Header */
-.site-content .entry-header, .comments-area #reply-title, .site-content .nav-single {
+.site-content .entry-header, .comments-area #reply-title,
+.site-content .nav-single, .site-content h1.archive-title {
 	.border-top-radius(@cnt-rdis1);
 	background-color: @cnt-colr1;
 	border: 1px solid #fff;
@@ -295,13 +296,29 @@ input[type=button], input[type=submit] {
 }
 
 /* Article Meta */
-.site-content .entry-meta {
+.site-content .entry-meta, .site-content .entry-empty,
+body.author .site-content .author-info, .site-content .archive-meta {
 	.border-bottom-radius(@cnt-rdis1);
 	background: @cnt-colr2;	
 	border: 1px solid #fff;
 	border-top: 0;
 	padding: 2px 8px 8px;
 	color: #fff;
+}
+.site-content .entry-empty form {
+	text-align: center;
+	margin-bottom: 0;
+}
+.site-content .entry-empty label.screen-reader-text {
+	font-weight: bold;
+	font-size: 16px;
+}
+.site-content .entry-empty label.screen-reader-text, .site-content .entry-empty input {
+	vertical-align: middle;
+	display: inline-block;
+	margin: 0 15px 0 0;
+}
+.site-content .entry-meta {
 	font-size: 10px;
 }
 .site-content .entry-author {
@@ -327,9 +344,9 @@ input[type=button], input[type=submit] {
 	clear: both;
 	width: 100%;
 }
-.site-content .entry-meta .author-avatar {
+.site-content .entry-meta .author-avatar, body.author .site-content .author-info img {
 	float: left;
-	margin: 0 10px 5px 0;
+	margin: 0 10px 0 0;
 }
 .site-content .entry-meta .author-description p {
 	font-size: 12px;
@@ -337,6 +354,16 @@ input[type=button], input[type=submit] {
 }
 .site-content .entry-meta .author-link {
 	text-align: right;
+}
+body.author .site-content .author-info {
+	padding: 8px;
+}
+body.author .site-content .author-info h2, body.author .site-content .author-info p, .site-content .archive-meta p {
+	margin: 0;
+}
+body.author .site-content .author-info p {
+	line-height: 20px;
+	font-size: 14px;
 }
 
 /* Article Comments */

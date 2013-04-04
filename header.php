@@ -25,6 +25,24 @@
 	<meta itemprop="description" content="">
 	<meta itemprop="image" content="">
 
+	<!-- Google Analytics -->
+	<?php if(of_get_option('google_analytics')): ?>
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', '<?php echo of_get_option('google_analytics'); ?>', '<?php echo str_replace('www.', '', $_SERVER['SERVER_NAME']); ?>');
+		  ga('send', 'pageview');
+		</script>
+	<?php endif; ?>
+
+	<!-- Google Webmaster -->
+	<?php if(of_get_option('google_webmaster')): ?>
+		<meta name="google-site-verification" content="<?php echo of_get_option('google_webmaster'); ?>" />
+	<?php endif; ?>
+
 	<!--Mobile Viewport Optimized /-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
