@@ -22,6 +22,4 @@ Things still to do:
 
 
 ## Update #8
-Cleaned up messy styles for the Author, 404, and Category pages.
-
-Added SEO options for Google Analytics and Google Webmaster.
+W3C Validated the code.

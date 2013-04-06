@@ -925,3 +925,26 @@ function jrblog_follow_icons() {
 #######################################
 ## -- END SOCIAL FUNCTIONS
 #######################################
+
+
+
+#######################################
+## -- START SEO FUNCTIONS
+#######################################
+
+/**
+ * Create Social Follow Icons
+ *
+ * @author Whitney Krape
+ * @src http://www.whitneykrape.com/2011/07/quick-fix-for-relcategory-tag-in-wordpress/ 
+ * @since JRConway Blog Template 1.0
+ */
+function jrblog_norel_cat($text) {
+	$text = str_replace('rel="category tag"', "", $text);
+	return $text;
+}
+add_filter('the_category', 'jrblog_norel_cat');
+
+#######################################
+## -- END SEO FUNCTIONS
+#######################################
