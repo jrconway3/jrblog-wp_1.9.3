@@ -69,7 +69,7 @@ function jrblog_custom_contact() {
 		),
 		"linkedin"         => array(
 			"name"   => "LinkedIn",
-			"url"    => "http://www.linkedin.com/pub/",
+			"url"    => "http://www.linkedin.com/in/",
 			"share"  => true
 		),
 		"myspace"          => array(
