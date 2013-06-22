@@ -5,7 +5,7 @@
  * If no active widgets in sidebar, let's hide it completely.
  *
  * @package WordPress
- * @subpackage jrConway.Blog
+ * @subpackage jrConway.jrBlog
  * @since jrBlog 1.0
  */
 ?>

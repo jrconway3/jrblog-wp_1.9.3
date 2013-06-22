@@ -10,7 +10,7 @@
  * for various features in WordPress, such as post thumbnails, navigation menus, and the like.
  *
  * @package Wordpress
- * @subpackage jrConway.Blog
+ * @subpackage jrConway.jrBlog
  * @since jrBlog 1.0
  */
 
@@ -19,10 +19,71 @@
 ## -- START CUSTOMIZATION OPTIONS
 #######################################
 
+
+if ( ! function_exists( 'jrblog_custom_styles' ) ) :
+/**
+ * Set Custom Stylesheets
+ *
+ * @since jrBlog 1.0
+ */
+function jrblog_custom_styles() {
+	/*
+	 * Loads our main stylesheet.
+	 */
+	wp_enqueue_style( 'jrblog-styles', get_template_directory_uri() . '/css/style.less');
+
+	/*
+	 * CHILD THEME:
+	 *
+	 * Copy this function to the functions.php file in the new child theme.
+	 * Copy css/child.less to your child themes css folder and rename it style.less.
+	 * Change "child" in the line below to your child theme's directory name.
+	 * Uncomment the line below.
+	 */
+	//wp_enqueue_style( 'jrblog-styles', dirname(get_template_directory_uri()) . '/child/css/style.less');
+}
+endif;
+add_action( 'wp_enqueue_scripts', 'jrblog_custom_styles' );
+
+if ( ! function_exists( 'jrblog_extend_contact' ) ) :
+/**
+ * Extend Custom Contact Fields
+ *
+ * @since jrBlog 1.0
+ */
+function jrblog_extend_contact($fields) {
+	/**
+	  * CHILD THEME:
+	  *
+	  * Copy this function to the functions.php of your child theme and 
+	  * perform contact field overrides in the same way as the default.
+	  *
+	  * You can also override the default function, but this is NOT
+	  * AT ALL recommended.
+	  */
+
+	// Add Array Overrides
+
+	// EXAMPLE: DISABLE FIELD
+	/*$fields['skype'] = false;*/
+
+	// EXAMPLE: ADD NEW FIELD
+	/*$fields['myspace] = array(
+		"name"   => "MySpace",
+		"url"    => "http://new.myspace.com/",
+		"share"  => false
+	);*/
+
+	// Return Contact Fields
+	return $fields;
+}
+endif;
+
+if ( ! function_exists( 'jrblog_custom_contact' ) ) :
 /**
  * Set Custom Contact Fields
  *
- * @since JRConway Blog Template 1.0
+ * @since jrBlog 1.0
  */
 function jrblog_custom_contact() {
 	/**
@@ -69,35 +130,52 @@ function jrblog_custom_contact() {
 		),
 		"linkedin"         => array(
 			"name"   => "LinkedIn",
-			"url"    => "http://www.linkedin.com/in/",
+			"url"    => "http://www.linkedin.com/pub/",
 			"share"  => true
-		),
-		"myspace"          => array(
-			"name"   => "MySpace",
-			"url"    => "http://new.myspace.com/",
-			"share"  => false
-		),
-		"behance"          => array(
-			"name"   => "Behance",
-			"url"    => "http://www.behance.net/",
-			"share"  => false
-		),
-		"github"           => array(
-			"name"   => "Github",
-			"url"    => "http://www.github.com/",
-			"share"  => false
-		),
-		"stackoverflow"    => array(
-			"name"   => "StackOverflow",
-			"url"    => "http://www.stackoverflow.com/users/",
-			"share"  => false
 		)
 	);
+
+	// Extend Custom Fields
+	$fields = jrblog_extend_contact($fields);
 
 	// Return Contact Fields
 	return $fields;
 }
+endif;
 
+if ( ! function_exists( 'jrblog_widgets_extend' ) ) :
+/**
+ * Extends our page widget areas.
+ *
+ * @since jrBlog 1.0
+ */
+function jrblog_widgets_extend() {
+	/**
+	  * CHILD THEME:
+	  *
+	  * Copy this function into your child theme's functions.php.
+	  *
+	  * This will extend the jrBlog sidebar widgets without overwriting
+	  * the existing sidebars.
+	  *
+	  * The commented register_sidebar function below may be used as an example.
+	  *
+	  * If you wish to overwrite the existing sidebars (NOT RECOMMENDED)
+	  * you can also copy the jrblog_widgets_init() function.
+	  */
+	/*register_sidebar( array(
+		'name' => __( 'Right Sidebar', 'jrblog' ),
+		'id' => 'sidebar-1',
+		'description' => __( 'Right sidebar for the page. Can be used in right sidebar and three-column layouts.', 'jrblog' ),
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );*/
+}
+endif;
+
+if ( ! function_exists( 'jrblog_widgets_init' ) ) :
 /**
  * Registers our page widget areas.
  *
@@ -235,9 +313,43 @@ function jrblog_widgets_init() {
 		'before_title' => '<h4 class="footer-title">',
 		'after_title' => '</h4>',
 	) );
+
+	// Extend Widgets
+	jrblog_widgets_extend();
 }
+endif;
 add_action( 'widgets_init', 'jrblog_widgets_init' );
 
+if ( ! function_exists( 'jrblog_class_extend' ) ) :
+/**
+ * Extends the default jrBlog body class.
+ *
+ * @since jrBlog 1.0
+ *
+ * @param array Existing class values.
+ * @return array Filtered class values.
+ */
+function jrblog_class_extend( $classes ) {
+	/**
+	  * CHILD THEME:
+	  *
+	  * Copy this function into your child theme's functions.php.
+	  *
+	  * This will extend the jrBlog body classes without overwriting
+	  * the existing classes.
+	  *
+	  * If you wish to overwrite the existing classes (NOT RECOMMENDED)
+	  * you can also copy the jrblog_class_init() function.
+	  */
+
+
+	// Return Classes (DO. NOT. REMOVE.)
+	return $classes;
+}
+endif;
+
+
+if ( ! function_exists( 'jrblog_class_init' ) ) :
 /**
  * Extends the default WordPress body class.
  *
@@ -246,34 +358,78 @@ add_action( 'widgets_init', 'jrblog_widgets_init' );
  * @param array Existing class values.
  * @return array Filtered class values.
  */
-function jrblog_body_class( $classes ) {
-	$background_color = get_background_color();
-
+function jrblog_class_init( $classes ) {
+	// Check if No Sidebars or Full Width Template
 	if ((!is_active_sidebar( 'sidebar-1' ) && !is_active_sidebar( 'sidebar-2')) ||
-			is_page_template( 'page-templates/full-width.php' ) )
-		$classes[] = 'full-width';
-
-	if ( is_active_sidebar( 'sidebar-1' ) && is_active_sidebar( 'sidebar-2' ) )
-		$classes[] = 'two-sidebars';
-
-	if ( is_active_sidebar( 'copyright-2' ) || jrblog_follow_icons())
-		$classes[] = 'copyright-columns';
-
-	if ( jrblog_share_buttons() )
-		$classes[] = 'share-posts';
-
-	if ( is_page_template( 'templates/front-page.php' ) ) {
-		$classes[] = 'template-front-page';
-		if ( has_post_thumbnail() )
-			$classes[] = 'has-post-thumbnail';
+			is_page_template( 'templates/full-width.php' ) ) {
+		// Add Full Width Class
+		$classes[] = 'full-width';	
 	}
 
-	if ( ! is_multi_author() )
+	// Check for Only Right Sidebar or Right Sidebar Template
+	elseif (( is_active_sidebar( 'sidebar-1' ) && !is_active_sidebar( 'sidebar-2' ) )
+			|| is_page_template( 'templates/right-sidebar.php' )) {
+		// Add Right Sidebar Class
+		$classes[] = 'right-sidebar';
+	}
+
+	// Check for Only Left Sidebar or Left Sidebar Template
+	elseif (( !is_active_sidebar( 'sidebar-1' ) && is_active_sidebar( 'sidebar-2' ) )
+			|| is_page_template( 'templates/left-sidebar.php' )) {
+		// Add Left Sidebar Class
+		$classes[] = 'left-sidebar';
+	}
+
+	// Check for Two Sidebars or Two Sidebar Template
+	elseif (( is_active_sidebar( 'sidebar-1' ) && is_active_sidebar( 'sidebar-2' ) )
+			|| is_page_template( 'templates/two-sidebar.php' )) {
+		// Add Two Sidebars Class
+		$classes[] = 'two-sidebars';
+	}
+
+	// Check for Follow Icons or Copyright Sidebar
+	if ( is_active_sidebar( 'copyright-2' ) || jrblog_follow_icons()) {
+		// Add Copyright Columns Class
+		$classes[] = 'copyright-columns';
+	}
+
+	// Check for Share Buttons
+	if ( jrblog_share_buttons() ) {
+		// Add Share Posts Class
+		$classes[] = 'share-posts';
+	}
+
+	// Check for Blog Template
+	if ( is_page_template( 'blog.php' ) ) {
+		// Add Blog Class
+		$classes[] = 'blog';
+	}
+
+	// Check for Default Template
+	if ( is_page_template( 'page.php' ) ) {
+		// Add Front Page Class
+		$classes[] = 'template-front-page';
+
+		// Check for Post Thumbnail
+		if ( has_post_thumbnail() ) {
+			// Add Has Post Thumbnail Class
+			$classes[] = 'has-post-thumbnail';	
+		}
+	}
+
+	// Check for Multi Author
+	if ( ! is_multi_author() ) {
+		// Add Single Author Class
 		$classes[] = 'single-author';
+	}
+
+	// Extend Body Classes
+	$classes = jrblog_class_extend($classes);
 
 	return $classes;
 }
-add_filter( 'body_class', 'jrblog_body_class' );
+endif;
+add_filter( 'body_class', 'jrblog_class_init' );
 
 #######################################
 ## -- END CUSTOMIZATION OPTIONS
@@ -403,12 +559,6 @@ function jrblog_scripts_styles() {
 		);
 		wp_enqueue_style( 'jrblog-fonts', add_query_arg( $query_args, "$protocol://fonts.googleapis.com/css" ), array(), null );
 	}
-
-	/*
-	 * Loads our main stylesheet.
-	 */
-	wp_enqueue_style( 'jrblog-style', get_stylesheet_uri() );
-	wp_enqueue_style( 'jrblog-styles', get_template_directory_uri() . '/css/style.less');
 
 	/*
 	 * Loads all required Javascript files.
@@ -623,7 +773,7 @@ if ( ! function_exists( 'jrblog_schema' ) ):
 /**
  * Gets Site Schema From Theme Options
  *
- * @since JRConway Blog Template 1.0
+ * @since jrBlog 1.0
  */
 function jrblog_schema() {
 	// Get Theme Options
@@ -643,7 +793,7 @@ endif; // jrblog_schema
 /**
  * Add Extra Contact Fields
  *
- * @since JRConway Blog Template 1.0
+ * @since jrBlog 1.0
  */
 function jrblog_contact_info($contactmethods) {
 	// Get Social Sites
@@ -683,7 +833,7 @@ add_filter('user_contactmethods', 'jrblog_contact_info');
  * @author David A Conway Jr.
  * @param string $url  : the url to share; defaults to current page's url
  * @param string $text : the text in the share popup; defaults to current page's title
- * @since JRConway Blog Template 1.0
+ * @since jrBlog 1.0
  */
 function jrblog_share_buttons($url = '', $text = '') {
 	// All Sharing Disabled?
@@ -721,7 +871,7 @@ function jrblog_share_buttons($url = '', $text = '') {
  * @author David A Conway Jr.
  * @param string $url  : the url to share; defaults to current page's url
  * @param string $text : the text in the share popup; defaults to current page's title
- * @since JRConway Blog Template 1.0
+ * @since jrBlog 1.0
  */
 function jrblog_facebook_button($url = '', $text = '') {
 	// Include HREF?
@@ -749,7 +899,7 @@ function jrblog_facebook_button($url = '', $text = '') {
  * @author David A Conway Jr.
  * @param string $url  : the url to share; defaults to current page's url
  * @param string $text : the text in the share popup; defaults to current page's title
- * @since JRConway Blog Template 1.0
+ * @since jrBlog 1.0
  */
 function jrblog_twitter_button($url = '', $text = '') {
 	// Include HREF?
@@ -777,7 +927,7 @@ function jrblog_twitter_button($url = '', $text = '') {
  * @author David A Conway Jr.
  * @param string $url  : the url to share; defaults to current page's url
  * @param string $text : the text in the share popup; defaults to current page's title
- * @since JRConway Blog Template 1.0
+ * @since jrBlog 1.0
  */
 function jrblog_googleplus_button($url = '', $text = '') {
 	// Include HREF?
@@ -805,7 +955,7 @@ function jrblog_googleplus_button($url = '', $text = '') {
  * @author David A Conway Jr.
  * @param string $url  : the url to share; defaults to current page's url
  * @param string $text : the text in the share popup; defaults to current page's title
- * @since JRConway Blog Template 1.0
+ * @since jrBlog 1.0
  */
 function jrblog_linkedin_button($url = '', $text = '') {
 	// Include HREF?
@@ -832,7 +982,7 @@ function jrblog_linkedin_button($url = '', $text = '') {
  * Create Social Follow Icons
  *
  * @author David A Conway Jr.
- * @since JRConway Blog Template 1.0
+ * @since jrBlog 1.0
  */
 function jrblog_follow_icons() {
 	// All Links Disabled?
@@ -933,11 +1083,11 @@ function jrblog_follow_icons() {
 #######################################
 
 /**
- * Create Social Follow Icons
+ * Disable WP Rel
  *
  * @author Whitney Krape
  * @src http://www.whitneykrape.com/2011/07/quick-fix-for-relcategory-tag-in-wordpress/ 
- * @since JRConway Blog Template 1.0
+ * @since jrBlog 1.0
  */
 function jrblog_norel_cat($text) {
 	$text = str_replace('rel="category tag"', "", $text);

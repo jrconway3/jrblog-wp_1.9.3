@@ -3,7 +3,7 @@
  * The template for displaying posts in the Image post format
  *
  * @package WordPress
- * @subpackage jrConway.Blog
+ * @subpackage jrConway.jrBlog
  * @since jrBlog 1.0
  */
 ?>

@@ -1,26 +1,27 @@
 /* =======================================================================
-   JRConway Blog Templates 1.0 Text Styles
+   jrBlog 1.0 Text Styles
    =======================================================================*/
 
 
 /* Body */
 html, body {
+	color: @glb-colr1;
 	font-size: @fnt-size1;
 }
 
 
 /* Links */
 a {
-	color: #CC99CC;
+	color: @glb-colr2;
 }
 a:hover {
-	color: #ff9999;
+	color: @glb-colr3;
 }
 
 /* Headers */
 h1, h2, h3, h4, h5, h6 {
 	line-height: 24px;
-	color: #fff;
+	color: @glb-colr1;
 }
 h1 {
 	font-size: @fnt-size4;
@@ -39,12 +40,13 @@ h5, h6 {
 }
 .site-header h1, .site-header h1 a {
 	.header;
-	font-size: 30px;
+	font-size: @hdr-size1;
+	line-height: @hdr-line1;
 }
 .site-header h2, .site-header h2 a {
 	.header;
-	font-size: 18px;
-	line-height: 1.6;
+	font-size: @hdr-size2;
+	line-height: @hdr-line2;
 }
 
 /* Caption */
@@ -59,7 +61,7 @@ h5, h6 {
 	display: none;
 }
 .main-navigation li a {
-	color: #cc00cc;
+	color: @nav-colr1;
 	font-weight: bold;
 	font-size: 12px;
 	line-height: 26px;
@@ -70,7 +72,18 @@ h5, h6 {
 .main-navigation .current-menu-ancestor > a,
 .main-navigation .current_page_item > a,
 .main-navigation .current_page_ancestor > a {
-	color: #cc99cc;
+	color: @nav-colr2;
+}
+.main-navigation li li > a {
+	color: @nav-colr3;
+}
+.main-navigation li li:hover > a,
+.main-navigation li a:focus,
+.main-navigation li .current-menu-item > a,
+.main-navigation li .current-menu-ancestor > a,
+.main-navigation li .current_page_item > a,
+.main-navigation li .current_page_ancestor > a {
+	color: @nav-colr4;
 }
 
 /* Sidebars */
@@ -88,7 +101,7 @@ h5, h6 {
 
 /* Paragraphs */
 p {
-	color: #fff;
+	color: @glb-colr1;
 }
 blockquote, blockquote p {
 	font-size: @fnt-size1;
@@ -104,7 +117,7 @@ blockquote, blockquote p {
 .main-navigation a.assistive-text:focus {
 	background: #eee;
 	border-bottom: 1px solid #ddd;
-	color: #1982d1;
+	color: @nav-colr5;
 	clip: auto !important;
 	font-size: 12px;
 	position: absolute;

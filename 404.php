@@ -3,7 +3,7 @@
  * The template for displaying 404 pages (Not Found).
  *
  * @package WordPress
- * @subpackage jrConway.Blog
+ * @subpackage jrConway.jrBlog
  * @since jrBlog 1.0
  */
 

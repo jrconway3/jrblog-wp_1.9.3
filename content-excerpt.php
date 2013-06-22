@@ -3,7 +3,7 @@
  * The template for displaying posts with an excerpt.
  *
  * @package WordPress
- * @subpackage jrConway.Blog
+ * @subpackage jrConway.jrBlog
  * @since jrBlog 1.0
  */
 $id = get_the_ID();

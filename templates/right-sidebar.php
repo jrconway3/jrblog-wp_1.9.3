@@ -1,19 +1,15 @@
 <?php
 /**
- * The template for displaying all pages.
+ * Template Name: Right Sidebar
  *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site will use a
- * different template.
+ * Description: Page theme with only a right sidebar.
  *
  * @package WordPress
- * @subpackage jrConway.jrBlog
- * @since jrBlog 1.0
+ * @subpackage Twenty_Twelve
+ * @since Twenty Twelve 1.0
  */
 
 get_header(); ?>
-<?php get_sidebar('left'); ?>
 
 	<div id="primary" class="site-content">
 		<div id="content" role="main">

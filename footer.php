@@ -6,7 +6,7 @@
  * #main and #page div elements.
  *
  * @package WordPress
- * @subpackage jrConway.Blog
+ * @subpackage jrConway.jrBlog
  * @since jrBlog 1.0
  */
 ?>

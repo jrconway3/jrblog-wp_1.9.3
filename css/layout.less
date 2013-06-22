@@ -1,5 +1,5 @@
 /* =======================================================================
-   jrBlog Template 1.0 Layout Styles
+   jrBlog 1.0 Layout Styles
    =======================================================================*/
 
 /* =============
@@ -8,13 +8,12 @@
 
 /* Wrapper */
 html, body {
-	color: @glb-colr1;
 	background: @glb-bkgd1;
 	font-size: @fnt-size1;
 	overflow-x: hidden;
 }
 body .site {
-	background: transparent;
+	background: @glb-bkgd2;
 	max-width: 100%;
 	box-shadow: none;
 	margin: 0;
@@ -80,14 +79,11 @@ input[type=button], input[type=submit] {
 .topbar > aside {
 	.makeColumn(5);
 }
-#maintitle {
-	padding-top: 30px;
-	line-height: 60px;
+.site-header h1.site-title {
+	padding-top: 10px;
 }
-#subtitle {
-	position: relative;
-	line-height: 30px;
-	bottom: 10px;
+.site-header h2.site-description {
+	margin-top: 10px;
 }
 
 
@@ -145,7 +141,7 @@ input[type=button], input[type=submit] {
 
 /* Sub-Menu */
 .sub-navigation {
-	background-color: @nav-colr1;
+	background-color: @nav-bkgd1;
 	width: 100%;
 	height: 36px;
 }
@@ -174,7 +170,7 @@ input[type=button], input[type=submit] {
 .main-navigation ul ul .current-menu-ancestor > a,
 .main-navigation ul ul .current_page_item > a,
 .main-navigation ul ul .current_page_ancestor > a {
-	background: @nav-colr2;
+	background: @nav-bkgd2;
 }
 .main-navigation ul li:hover > ul {
 	display: block;
@@ -197,7 +193,7 @@ input[type=button], input[type=submit] {
 .main-navigation ul ul ul li {
 	height: 28px;
 	line-height: 28px;
-	background-color: @nav-colr1;
+	background-color: @nav-bkgd1;
 }
 .main-navigation ul ul ul a {
 	height: 26px;
@@ -228,6 +224,7 @@ input[type=button], input[type=submit] {
 	margin-bottom: 20px;
 }
 .site-content article {
+	margin-top: 15px;
 	border: 0;
 }
 
@@ -235,12 +232,11 @@ input[type=button], input[type=submit] {
 .site-content .entry-header, .comments-area #reply-title,
 .site-content .nav-single, .site-content h1.archive-title {
 	.border-top-radius(@cnt-rdis1);
-	background-color: @cnt-colr1;
+	background-color: @cnt-bkgd1;
 	border: 1px solid #fff;
 	border-bottom: 1px solid #999;
 	font-weight: bold;
 	margin: 0;
-	margin-top: 15px;
 	padding: 8px 8px 2px;
 	text-align: left;
 }
@@ -277,7 +273,7 @@ input[type=button], input[type=submit] {
 
 /* Article Content */
 .site-content .entry-content {
-	background: @cnt-colr2;	
+	background: @cnt-bkgd2;
 	border: 1px solid #fff;
 	border-top: 0;
 	border-bottom: 0;
@@ -299,7 +295,7 @@ input[type=button], input[type=submit] {
 .site-content .entry-meta, .site-content .entry-empty,
 body.author .site-content .author-info, .site-content .archive-meta {
 	.border-bottom-radius(@cnt-rdis1);
-	background: @cnt-colr2;	
+	background: @cnt-bkgd2;	
 	border: 1px solid #fff;
 	border-top: 0;
 	padding: 2px 8px 8px;
@@ -369,13 +365,22 @@ body.author .site-content .author-info p {
 /* Article Comments */
 .comments-area form {
 	.border-bottom-radius(@cnt-rdis1);
-	background: @cnt-colr2;	
+	background: @cnt-bkgd2;	
 	border: 1px solid #fff;
 	border-top: 0;
 	padding: 5px 8px;
 }
 .comments-area form .comment-form-comment textarea {
 	width: @width1;
+}
+
+/* Left Sidebar Content */
+body.left-sidebar .wrapper > .site-content {
+	.makeColumn(8, 1);
+}
+body.two-sidebars .wrapper > .site-content {
+	.makeColumn(6);
+	margin-left: 20px;
 }
 
 
@@ -390,18 +395,17 @@ body.author .site-content .author-info p {
 }
 .wrapper > .widget-area aside {
 	.border-radius(@cnt-rdis1);
-	background: @cnt-colr2;
+	background: @cnt-bkgd2;
 	border: 1px solid #fff;
 	margin: 0;
 	margin-top: 15px;
 	padding: 0;
 	width: auto;
-	color: #fff;
 	text-align: left;
 }
 .wrapper > .widget-area aside h3 {
 	.border-top-radius(@cnt-rdis1);
-	background-color: @cnt-colr1;
+	background-color: @cnt-bkgd1;
 	margin: 0;
 	padding: 8px 8px 2px;
 	border-bottom: 1px solid #999;
@@ -422,7 +426,7 @@ body.author .site-content .author-info p {
 	border: 0;
 }
 .wrapper > .widget-area aside ul li:hover {
-	background: @hvr-colr1;
+	background: @hvr-bkgd1;
 }
 .wrapper > .widget-area aside ul ul li,
 .wrapper > .widget-area aside ul ul li:last-child {
@@ -434,11 +438,10 @@ body.author .site-content .author-info p {
 /* Search Widget */
 .wrapper > .widget-area aside.widget_search {
 	.border-radius(@cnt-rdis1);
-	background: @cnt-colr2;	
+	background: @cnt-bkgd2;	
 	border: 1px solid #fff;
 	padding: 8px;
 	width: auto;
-	color: #fff;
 	text-align: left;
 	font-size: 14px;
 }
@@ -463,6 +466,26 @@ body.author .site-content .author-info p {
 	margin-left: 10px;
 }
 
+/* Left Sidebar */
+.wrapper > .widget-area.widget-left {
+	.makeColumn(3);
+	background: @sid-bkgd1;
+	margin-left: 0;
+}
+.wrapper > .widget-area.widget-left .menu-left-container {
+	padding: 0;
+}
+
+/* Left Sidebar Right Content */
+body.left-sidebar .wrapper > .widget-area,
+body.two-sidebars .wrapper > .widget-area {
+	margin-left: 20px;
+}
+body.left-sidebar .wrapper > .widget-area.widget-left,
+body.two-sidebars .wrapper > .widget-area.widget-left {
+	margin-left: 0;
+}
+
 
 
 /* =============
@@ -479,7 +502,7 @@ footer[role="contentinfo"] {
 	clear: none;
 }
 .site-bar {
-	.boxShadow(0px, 6px, 6px, @glb-shdw1);
+	.boxShadow(0px, 7px, 6px, @glb-shdw1);
 	background: url('@{base-path}images/footer_bar.png') repeat-x;
 	position: relative;
 	z-index: 150;
@@ -488,7 +511,7 @@ footer[role="contentinfo"] {
 .site-info {
 	.wrapping;
 	.border-bottom-radius(10px);
-	.boxShadow(0, 10px, 10px, @glb-shdw1);
+	.boxShadow(0, 7px, 6px, @glb-shdw1);
 	background-color: @glb-bkgd1;
 	height: 50px;
 	margin-top: -35px;
@@ -498,7 +521,7 @@ footer[role="contentinfo"] {
 }
 .site-footer {
 	.full;
-	background: @ftr-colr1;
+	background: @ftr-bkgd1;
 	height: 80px;
 	margin-top: -15px;
 	position: relative;
