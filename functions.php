@@ -11,7 +11,7 @@
  *
  * @package Wordpress
  * @subpackage jrConway.jrBlog
- * @since jrBlog 1.0
+ * @since jrBlog 1.9
  */
 
 
@@ -386,6 +386,24 @@ function jrblog_class_init( $classes ) {
 		// Add Two Sidebars Class
 		$classes[] = 'two-sidebars';
 	}
+
+	// Count Footer Areas Available
+	$footers = 0;
+	if (is_active_sidebar( 'footer-1' )) {
+		$footers++;
+	}
+	if (is_active_sidebar( 'footer-2' )) {
+		$footers++;
+	}
+	if (is_active_sidebar( 'footer-3' )) {
+		$footers++;
+	}
+	if (is_active_sidebar( 'footer-4' )) {
+		$footers++;
+	}
+
+	// Add Number of Footers Class
+	$classes[] = 'footers-'.$footers;
 
 	// Check for Follow Icons or Copyright Sidebar
 	if ( is_active_sidebar( 'copyright-2' ) || jrblog_follow_icons()) {

@@ -3,19 +3,19 @@ Theme Name: jrBlog
 Theme URI: http://www.jrconway.net
 Author: David A Conway Jr.
 Author URI: http://www.jrconway.net
-Description: jrBlog is a responsive wordpress template built for personal usage, but also as a
-template designed to be used by DEVELOPERS to make it easier to create a responsive wordpress
-template. The template works out of the box, but can also be used as a base for future wordpress
-templates, which I will be using it for as well.
+Description: jrBlog is a wordpress template built for personal usage, but also as a
+template designed to be used by DEVELOPERS to make it easier to create a wordpress
+template. The template works out of the box, but can also be used as a base for future
+wordpress templates, which I will be using it for as well.
 
-This template utilizes TwentyTwelve as a base, Gumby Framework, Twitter Bootstrap (for the icons),
-and Less. The WP-Less Wordpress extension used in this template was created by Robert O'Rourke.
-As this template uses LESS instead of normal CSS, this stylesheet page is only here to represent the
+This template utilizes TwentyTwelve as a base, Twitter Bootstrap, and Less. The WP-Less
+Wordpress extension used in this template was created by Robert O'Rourke. As this template
+uses LESS instead of normal CSS, this stylesheet page is only here to represent the
 theme itself. All styles have been removed from this stylesheet.
 
-All content areas that may potentially be editable are created as Widget Areas. Even the header can
-be made into a widget area if no header image is provided.
-Version: 1.0
+All content areas that may potentially be editable are created as Widget Areas. Even the
+header can be made into a widget area if no header image is provided.
+Version: 1.9
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: right-sidebar, flexible-width, full-width-template, rtl-language-support, theme-options, translation-ready
