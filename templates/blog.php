@@ -6,17 +6,24 @@
  *
  * @package WordPress
  * @subpackage jrConway.Blog
- * @since jrBlog 1.0
+ * @since jrBlog 1.9.3
  */
 
 get_header(); ?>
-<?php get_sidebar('left'); ?>
 
 	<div id="primary" class="site-content">
 		<div id="content" role="main">
-		<?php if ( have_posts() ) : ?>
+		<?php if ( have_posts() ) : $page = get_page(); ?>
 
-			<?php /* Start the Loop */ ?>
+			<header class="entry-header">
+				<h1 class="entry-title"><?php _e( $page->post_title ); ?></h1>
+			</header>
+
+			<?php
+				/* Start the Loop */
+				$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+				query_posts("post_type=post&paged=$paged&order=DESC");
+			?>
 			<?php while ( have_posts() ) : the_post(); ?>
 				<?php get_template_part( 'content', 'excerpt' ); ?>
 			<?php endwhile; ?>
@@ -58,5 +65,4 @@ get_header(); ?>
 		</div><!-- #content -->
 	</div><!-- #primary -->
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

@@ -11,7 +11,7 @@
  *
  * @package Wordpress
  * @subpackage jrConway.jrBlog
- * @since jrBlog 1.9
+ * @since jrBlog 1.9.3
  */
 
 
@@ -222,8 +222,8 @@ function jrblog_widgets_init() {
 		'name' => __( 'Header Image', 'jrblog' ),
 		'id' => 'header-1',
 		'description' => __( 'Header area for the site logo to go.', 'jrblog' ),
-		'before_widget' => '<header id="%1$s" class="widget %2$s">',
-		'after_widget' => '</header>',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
 		'before_title' => '',
 		'after_title' => '',
 	) );
@@ -251,8 +251,8 @@ function jrblog_widgets_init() {
 		'name' => __( 'Copyright Footer', 'jrblog' ),
 		'id' => 'copyright-1',
 		'description' => __( 'Footer area for the copyright.', 'jrblog' ),
-		'before_widget' => '<small id="%1$s" class="widget %2$s">',
-		'after_widget' => '</small>',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
 		'before_title' => '<h6 class="copyright-title">',
 		'after_title' => '</h6>',
 	) );
@@ -260,8 +260,8 @@ function jrblog_widgets_init() {
 		'name' => __( 'Copyright Sidebar', 'jrblog' ),
 		'id' => 'copyright-2',
 		'description' => __( 'Sidebar for the copyright to enable two-column copyright area', 'jrblog' ),
-		'before_widget' => '<small id="%1$s" class="widget %2$s">',
-		'after_widget' => '</small>',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
 		'before_title' => '<h6 class="copyright-title">',
 		'after_title' => '</h6>',
 	) );
@@ -281,8 +281,8 @@ function jrblog_widgets_init() {
 		'name' => __( 'Footer 1', 'jrblog' ),
 		'id' => 'footer-1',
 		'description' => __( 'First widget area of the site footer.', 'jrblog' ),
-		'before_widget' => '<footer id="%1$s" class="widget %2$s">',
-		'after_widget' => '</footer>',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
 		'before_title' => '<h4 class="footer-title">',
 		'after_title' => '</h4>',
 	) );
@@ -290,8 +290,8 @@ function jrblog_widgets_init() {
 		'name' => __( 'Footer 2', 'jrblog' ),
 		'id' => 'footer-2',
 		'description' => __( 'Second widget area of the site footer.', 'jrblog' ),
-		'before_widget' => '<footer id="%1$s" class="widget %2$s">',
-		'after_widget' => '</footer>',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
 		'before_title' => '<h4 class="footer-title">',
 		'after_title' => '</h4>',
 	) );
@@ -299,8 +299,8 @@ function jrblog_widgets_init() {
 		'name' => __( 'Footer 3', 'jrblog' ),
 		'id' => 'footer-3',
 		'description' => __( 'Third widget area of the site footer.', 'jrblog' ),
-		'before_widget' => '<footer id="%1$s" class="widget %2$s">',
-		'after_widget' => '</footer>',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
 		'before_title' => '<h4 class="footer-title">',
 		'after_title' => '</h4>',
 	) );
@@ -308,8 +308,8 @@ function jrblog_widgets_init() {
 		'name' => __( 'Footer 4', 'jrblog' ),
 		'id' => 'footer-4',
 		'description' => __( 'Fourth widget area of the site footer.', 'jrblog' ),
-		'before_widget' => '<footer id="%1$s" class="widget %2$s">',
-		'after_widget' => '</footer>',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
 		'before_title' => '<h4 class="footer-title">',
 		'after_title' => '</h4>',
 	) );
@@ -418,7 +418,8 @@ function jrblog_class_init( $classes ) {
 	}
 
 	// Check for Blog Template
-	if ( is_page_template( 'blog.php' ) ) {
+	if ( is_page_template( 'blog.php' ) || is_category() || is_search() ||
+			is_single() || is_tag() ) {
 		// Add Blog Class
 		$classes[] = 'blog';
 	}
@@ -448,6 +449,21 @@ function jrblog_class_init( $classes ) {
 }
 endif;
 add_filter( 'body_class', 'jrblog_class_init' );
+
+if ( ! function_exists( 'jrblog_excerpt_more' ) ) :
+/**
+ * Change Read More Text on Excerpts
+ *
+ * @since jrBlog 1.9.3
+ *
+ * @param array Existing class values.
+ * @return array Filtered class values.
+ */
+function jrblog_excerpt_more($output) {
+	return $output . '<p><a class="moretag" href="'. get_permalink( get_the_ID() ) . '">Read More</a></p>';
+}
+endif;
+add_filter('the_excerpt', 'jrblog_excerpt_more');
 
 #######################################
 ## -- END CUSTOMIZATION OPTIONS
@@ -840,7 +856,6 @@ add_filter('user_contactmethods', 'jrblog_contact_info');
 #######################################
 
 
-
 #######################################
 ## -- START SOCIAL FUNCTIONS
 #######################################
@@ -1002,9 +1017,9 @@ function jrblog_linkedin_button($url = '', $text = '') {
  * @author David A Conway Jr.
  * @since jrBlog 1.0
  */
-function jrblog_follow_icons() {
+function jrblog_follow_icons($force = false) {
 	// All Links Disabled?
-	if(of_get_option('follow_disable')) {
+	if(of_get_option('follow_disable') && empty($force)) {
 		return '';
 	}
 
@@ -1026,8 +1041,14 @@ function jrblog_follow_icons() {
 
 		// Feedburner Enabled?
 		if(!empty($acct)) {
+			// Full URL Provided?
+			if(strpos($acct, 'http') !== false) {
+				$feed = $acct;
+			}
 			// Set Feedburner Feed
-			$feed = $url . $acct;
+			else {
+				$feed = $url . $acct;
+			}
 		}
 		// Use Internal Feed
 		else {
@@ -1060,12 +1081,24 @@ function jrblog_follow_icons() {
 		if(!empty($field) && is_array($field) && count($field)) {
 			// Set Unique Variables
 			$img     = '';
+			$href    = '';
 			$url     = $field['url'];
 			$acct    = of_get_option($code . '_acct');
 			$icon    = of_get_option($code . '_icon');
 			$custom  = of_get_option($code . '_custom');
 			$follow  = of_get_option($code . '_follow');
 			$default = '/images/icons/' . $size . '/' . $code . '.png';
+
+			// Full URL Provided?
+			if(strpos($acct, 'http') !== false) {
+				// Set Specific Domain
+				$href = $acct;
+			}
+			// Set 
+			else {
+				// Set Default Domain
+				$href = $url . $acct;
+			}
 
 			// Add to Contact Methods
 			if(!empty($follow) && !empty($url) && !empty($acct)) {
@@ -1081,7 +1114,7 @@ function jrblog_follow_icons() {
 				}
 
 				// Add Link HTML
-				$html .= '<a href="' . $url . $acct . '" target="_blank"><img src="' . $img . '" alt="" width="' . $size . '" height="' . $size . '" /></a>';
+				$html .= '<a href="' . $href . '" target="_blank"><img src="' . $img . '" alt="" width="' . $size . '" height="' . $size . '" /></a>';
 			}
 		}
 	}
@@ -1089,6 +1122,23 @@ function jrblog_follow_icons() {
 	// Return Share HTML
 	return $html;
 }
+
+/**
+  * Shortcode for jrBlog Social Icons
+  *
+  * @author David A Conway Jr.
+  * @since Real Chords 1.9
+  */
+function jrblog_socialicon_display( $atts ){
+	// Extract Attributes
+	extract( shortcode_atts( array(
+		'force'     => 'true',
+	), $atts ) );
+
+	// Return HTML Code
+	return jrblog_follow_icons($force);
+}
+add_shortcode( 'jrblog_socialicons', 'jrblog_socialicon_display' );
 
 #######################################
 ## -- END SOCIAL FUNCTIONS

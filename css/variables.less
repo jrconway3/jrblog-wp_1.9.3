@@ -1,6 +1,17 @@
-/* =======================================================================
-   jrBlogs 1.9 Variables
-   =======================================================================*/
+/**
+ * jrBlog Predefined Variables.
+ *
+ * This section contains all potentially interchangeable information as variables.
+ * This includes colors, font sizes, line heights, and template paths.
+ *
+ * TO DO: Find a way for these variables to be usable without consulting other pages.
+ * TO DO: Replace any remaining raw values in layout.less and text.less with variables.
+ * TO DO: Add line-heights.
+ *
+ * @package WordPress
+ * @subpackage jrBlog
+ * @since jrBlog 1.9.3
+ */
 
 // Globals
 @glb-bkgd1: #cccccc;
@@ -57,8 +68,11 @@
 @sid-colr1: #1F131F;
 
 // Widths
+//## TO DO: Move these widths into their respective areas. ##//
 @width1: 98%;
 @width2: 96%;
 
 // Paths
+//### These are used to determine the location of image files. ###//
 @base-path: '/wp-content/themes/jrblog/';
+@main-path: '/wp-content/themes/jrblog/'; // Use this to point to a child theme.

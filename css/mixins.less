@@ -1,5 +1,15 @@
+/**
+ * jrBlog Custom Mixins
+ *
+ * This section has a series of basic mixins used in the layout and text.
+ *
+ * @package WordPress
+ * @subpackage jrBlog
+ * @since jrBlog 1.9
+ */
+
 /* =======================================================================
-   jrBlog 1.0 Mixins
+   jrBlog 1.9 Mixins
    =======================================================================*/
 
 // Wrappers
@@ -20,6 +30,9 @@
 .textShadow(@h: 2px, @v: 4px, @blur: 5px, @color: rgba(0,0,0,0.5)) {
 	text-shadow: @arguments;
 }
+.textShadow(@shadow: 1px 1px 3px #000000) {
+	text-shadow: @shadow;
+}
 .textEmboss(@color: rgba(0,0,0,0.5)) {
 	.textShadow(0, -1px, 5px, @color);
 }
@@ -36,4 +49,41 @@
 	font-family: Verdana, Arial, sans-serif;
 	letter-spacing: 3px;
 	-webkit-transition-duration: 1s;
+}
+
+/* Box Sizing */
+.borderBox(@true: 1) when not (@true = 0), not (@true = false), not (@true = 'false') {
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+.borderBox(@true: 1) when (@true = 0), (@true = false), (@true = 'false') {
+	-webkit-box-sizing: content-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: content-box;    /* Firefox, other Gecko */
+	box-sizing: content-box;         /* Opera/IE 8+ */
+}
+
+/* Font Awesome Icon */
+.icon(@icon: "\f054", @color: #ffffff, @size: 100%) {
+	font-family: FontAwesome;
+	font-weight: normal;
+	font-style: normal;
+	text-decoration: inherit;
+	-webkit-font-smoothing: antialiased;
+
+	/* Get Icon */
+	&:before {
+		margin: 0 5px 0 -20px;
+		content: @icon;
+		color: @color;
+		font-size: @size;
+	}
+}
+
+/* List */
+.list(@icon: "\f054", @color: #cccccc, @size, @margin: 5px 0 0 5px,
+		@padding: 2px 8px 2px 30px) {
+	.icon(@icon, @color, @size);
+	margin: @margin;
+	padding: @padding;
 }

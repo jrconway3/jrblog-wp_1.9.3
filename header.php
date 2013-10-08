@@ -6,7 +6,7 @@
  *
  * @package WordPress
  * @subpackage jrConway.jrBlog
- * @since jrBlog 1.0
+ * @since jrBlog 1.9.3
  */
 ?>
 <!DOCTYPE html>
@@ -78,6 +78,7 @@
 
 	<div id="page" class="hfeed site">
 		<header id="masthead" class="site-header" role="banner">
+			<a id="top"></a>
 			<section class="topbar">
 				<div>
 					<?php if(is_active_sidebar('header-1')) : ?>

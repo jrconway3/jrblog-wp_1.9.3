@@ -4,13 +4,17 @@
  *
  * @package WordPress
  * @subpackage jrConway.jrBlog
- * @since jrBlog 1.0
+ * @since jrBlog 1.9.3
  */
 
 get_header(); ?>
 
 	<div id="primary" class="site-content">
 		<div id="content" role="main">
+
+			<header class="entry-header">
+				<h1 class="entry-title"><?php _e( 'The Blog' ); ?></h1>
+			</header>
 
 			<?php while ( have_posts() ) : the_post(); ?>
 

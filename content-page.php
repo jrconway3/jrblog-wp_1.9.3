@@ -4,11 +4,12 @@
  *
  * @package WordPress
  * @subpackage jrConway.jrBlog
- * @since jrBlog 1.0
+ * @since jrBlog 1.9.3
  */
 ?>
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		<a id="heading">&nbsp;</a>
 		<header class="entry-header">
 			<h1 class="entry-title"><?php the_title(); ?></h1>
 		</header>

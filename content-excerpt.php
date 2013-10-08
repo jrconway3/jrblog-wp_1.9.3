@@ -4,7 +4,7 @@
  *
  * @package WordPress
  * @subpackage jrConway.jrBlog
- * @since jrBlog 1.0
+ * @since jrBlog 1.9.3
  */
 $id = get_the_ID();
 ?>
@@ -17,11 +17,11 @@ $id = get_the_ID();
 		<?php endif; ?>
 		<header class="entry-header">
 			<?php if ( is_single() ) : ?>
-			<h1 class="entry-title"><?php the_title(); ?></h1>
+				<h2 class="entry-title"><?php the_title(); ?></h2>
 			<?php else : ?>
-			<h1 class="entry-title">
-				<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'jrblog' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
-			</h1>
+				<h2 class="entry-title">
+					<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'jrblog' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
+				</h2>
 			<?php endif; // is_single() ?>
 			<div class="comments-link">
 				<?php if ( comments_open() ) : ?>
