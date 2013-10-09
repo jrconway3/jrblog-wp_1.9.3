@@ -11,7 +11,7 @@
  *
  * @package Wordpress
  * @subpackage jrConway.jrBlog
- * @since jrBlog 1.9.3
+ * @since jrBlog 1.9.4
  */
 
 
@@ -24,13 +24,27 @@ if ( ! function_exists( 'jrblog_custom_styles' ) ) :
 /**
  * Set Custom Stylesheets
  *
- * @since jrBlog 1.0
+ * @since jrBlog 1.9.3
  */
 function jrblog_custom_styles() {
 	/*
 	 * Loads our main stylesheet.
 	 */
 	wp_enqueue_style( 'jrblog-styles', get_template_directory_uri() . '/css/style.less');
+
+	/*
+	 * Load jQuery
+	 */
+	if (!is_admin()) {
+		wp_enqueue_script('jquery');
+	}
+
+	/*
+	 * Load Javascript Functions
+	 */
+	wp_enqueue_script( 'modernizr', dirname(get_template_directory_uri()) . '/js/libs/modernizr-2.0.6.min.js');
+	wp_enqueue_script( 'twitter-bootstrap', dirname(get_template_directory_uri()) . '/js/bootstrap.min.js', array('jquery'));
+	wp_enqueue_script( 'jrblog-scripts', dirname(get_template_directory_uri()) . '/js/main.js', array('jquery'));
 
 	/*
 	 * CHILD THEME:
@@ -353,7 +367,7 @@ if ( ! function_exists( 'jrblog_class_init' ) ) :
 /**
  * Extends the default WordPress body class.
  *
- * @since jrBlog 1.0
+ * @since jrBlog 1.9.4
  *
  * @param array Existing class values.
  * @return array Filtered class values.
