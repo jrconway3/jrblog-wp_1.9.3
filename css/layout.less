@@ -79,20 +79,24 @@ input[type=button], input[type=submit] {
 	.wrapping;
 }
 .topbar > div {
-	.makeColumn(7);
 	margin: 0;
 }
 .topbar > div a {
 	height: auto;
-}
-.topbar > aside {
-	.makeColumn(5);
 }
 .site-header h1.site-title {
 	padding-top: 10px;
 }
 .site-header h2.site-description {
 	margin-top: 10px;
+}
+
+/* Two Column Header */
+body.header-columns .topbar > div {
+	.makeColumn(7);
+}
+body.header-columns .topbar > aside {
+	.makeColumn(5);
 }
 
 
@@ -239,7 +243,8 @@ input[type=button], input[type=submit] {
 
 /* Article Header */
 .site-content .entry-header, .comments-area #reply-title,
-.site-content .nav-single, .site-content h1.archive-title {
+.site-content .nav-single, .site-content .navigation,
+.site-content h1.archive-title, #disqus_thread {
 	.border-top-radius(@cnt-rdis1);
 	background-color: @cnt-bkgd1;
 	border: 1px solid #fff;
@@ -249,14 +254,31 @@ input[type=button], input[type=submit] {
 	padding: 8px 8px 2px;
 	text-align: left;
 }
-.site-content h1.entry-title, .site-content .nav-single {
+.site-content .entry-title, .site-content .nav-single, #disqus_thread,
+.site-content .navigation {
 	.border-radius(@cnt-rdis1);
 	padding-bottom: 8px;
+}
+#disqus_thread {
+	margin-top: 20px;
+}
+.site-content .navigation#nav-above {
+	margin-top: 14px;
+	margin-bottom: 10px;
+}
+.site-content .navigation#nav-below {
+	margin-top: 10px;
+}
+.site-content .navigation h3 {
+	margin: 0;
+}
+.site-content .navigation .nav-previous, .site-content .navigation .nav-next {
+	margin-bottom: 0;
 }
 .site-content .nav-next {
 	float: right;
 }
-.site-content .entry-header h1.entry-title {
+.site-content .entry-header .entry-title {
 	.makeColumn(6);
 	.border-radius(0);
 	margin: 0;

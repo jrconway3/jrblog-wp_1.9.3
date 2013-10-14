@@ -146,6 +146,12 @@ function jrblog_custom_contact() {
 			"name"   => "LinkedIn",
 			"url"    => "http://www.linkedin.com/pub/",
 			"share"  => true
+		),
+		"tumblr"           => array(
+			"name"   => "Tumblr",
+			"url"    => "http://www.tumblr.com",
+			"share"  => false,
+			"sub"    => true
 		)
 	);
 
@@ -420,6 +426,12 @@ function jrblog_class_init( $classes ) {
 	$classes[] = 'footers-'.$footers;
 
 	// Check for Follow Icons or Copyright Sidebar
+	if ( is_active_sidebar( 'header-1' ) && is_active_sidebar( 'header-2' ) ) {
+		// Add Copyright Columns Class
+		$classes[] = 'header-columns';
+	}
+
+	// Check for Follow Icons or Copyright Sidebar
 	if ( is_active_sidebar( 'copyright-2' ) || jrblog_follow_icons()) {
 		// Add Copyright Columns Class
 		$classes[] = 'copyright-columns';
@@ -677,6 +689,7 @@ function jrblog_content_nav( $html_id ) {
 			<h3 class="assistive-text"><?php _e( 'Post navigation', 'jrblog' ); ?></h3>
 			<div class="nav-previous alignleft"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'jrblog' ) ); ?></div>
 			<div class="nav-next alignright"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'jrblog' ) ); ?></div>
+			<div class="clear">&nbsp;</div>
 		</nav><!-- #<?php echo $html_id; ?> .navigation -->
 	<?php endif;
 }
@@ -1096,6 +1109,7 @@ function jrblog_follow_icons($force = false) {
 			// Set Unique Variables
 			$img     = '';
 			$href    = '';
+			$sub     = $field['sub'];
 			$url     = $field['url'];
 			$acct    = of_get_option($code . '_acct');
 			$icon    = of_get_option($code . '_icon');
@@ -1108,7 +1122,12 @@ function jrblog_follow_icons($force = false) {
 				// Set Specific Domain
 				$href = $acct;
 			}
-			// Set 
+			// Is a Subdomain?
+			elseif(!empty($sub)) {
+				// Replace Subdomain
+				$href = str_replace('www', $acct, $url);
+			}
+			// Set Social URL
 			else {
 				// Set Default Domain
 				$href = $url . $acct;

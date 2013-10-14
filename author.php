@@ -18,6 +18,8 @@ get_header(); ?>
 
 		<?php if ( have_posts() ) : ?>
 
+			<?php jrblog_content_nav( 'nav-above' ); ?>
+
 			<?php
 				/* Queue the first post, that way we know
 				 * what author we're dealing with (if that is the case).
@@ -39,8 +41,6 @@ get_header(); ?>
 				 */
 				rewind_posts();
 			?>
-
-			<?php jrblog_content_nav( 'nav-above' ); ?>
 
 			<?php
 			// If a user has filled out their description, show a bio on their entries.
