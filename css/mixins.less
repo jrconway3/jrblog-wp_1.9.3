@@ -64,12 +64,14 @@
 }
 
 /* Font Awesome Icon */
-.icon(@icon: "\f054", @color: #ffffff, @size: 100%) {
-	font-family: FontAwesome;
-	font-weight: normal;
-	font-style: normal;
-	text-decoration: inherit;
-	-webkit-font-smoothing: antialiased;
+.icon(@icon: @fa-var-dot-circle-o, @color: #ffffff, @size: 100%) {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
 	/* Get Icon */
 	&:before {
