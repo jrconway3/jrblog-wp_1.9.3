@@ -1,6 +1,8 @@
 # jrBlog Responsive WP Theme
 ============================
 
+> [!CAUTION]
+> This repository is outdated and no longer maintained. It is preserved here for archival purposes only.
 
 jrBlog is a responsive wordpress template built for personal usage, but also as a template designed to be used by DEVELOPERS to make it easier to create a responsive wordpress template. The template works out of the box, but can also be used as a base for future wordpress templates, which I will be using it for as well.
 
